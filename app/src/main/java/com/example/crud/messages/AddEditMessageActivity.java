@@ -20,10 +20,10 @@ import retrofit2.Response;
 
 public class AddEditMessageActivity extends AppCompatActivity {
 
-    public Messages messages;
-    public EditText addNameTxt;
-    public EditText phoneNumberTxt;
-    public EditText addMessageTxt;
+    private Messages messages;
+    private EditText addNameTxt;
+    private EditText phoneNumberTxt;
+    private EditText addMessageTxt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,11 +39,11 @@ public class AddEditMessageActivity extends AppCompatActivity {
         }
     }
 
-    public void setUpToast(String message) {
+    private void setUpToast(String message) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 
-    public void updateMessage(String id, String name, String phoneNumber, String messageText) {
+    private void updateMessage(String id, String name, String phoneNumber, String messageText) {
         Messages messages = new Messages();
         messages.name = name;
         messages.id= id;
@@ -67,13 +67,13 @@ public class AddEditMessageActivity extends AppCompatActivity {
 
     }
 
-    public void findIds() {
+    private void findIds() {
         addNameTxt = findViewById(R.id.add_name_txt);
         phoneNumberTxt = findViewById(R.id.phone_number_txt);
         addMessageTxt = findViewById(R.id.add_message_txt);
     }
 
-    public void showData(){
+    private void showData(){
         addNameTxt.setText(messages.name);
         addMessageTxt.setText(messages.message);
         phoneNumberTxt.setText(messages.mobileNo);
@@ -102,7 +102,7 @@ public class AddEditMessageActivity extends AppCompatActivity {
         }
     }
 
-    public void addMessage(String name, String phoneNumber, String messageText) {
+    private void addMessage(String name, String phoneNumber, String messageText) {
         Messages messages = new Messages();
         messages.name = name;
         messages.mobileNo = phoneNumber;

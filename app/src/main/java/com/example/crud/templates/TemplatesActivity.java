@@ -13,6 +13,8 @@ import android.widget.Toast;
 
 import com.example.crud.Constants;
 import com.example.crud.R;
+import com.example.crud.api.CrudApi;
+import com.example.crud.api.CrudService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,9 +25,9 @@ import retrofit2.Response;
 
 public class TemplatesActivity extends AppCompatActivity {
 
-    public ArrayList<Templates> templatesList = new ArrayList<>();
-    public RecyclerView templatesRv;
-    public TemplateAdapter templateAdapter;
+    private ArrayList<Templates> templatesList = new ArrayList<>();
+    private RecyclerView templatesRv;
+    private TemplateAdapter templateAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,26 +37,30 @@ public class TemplatesActivity extends AppCompatActivity {
         setUpTemplatesRv();
     }
 
-    public void updateTemplates(String templates) {
+    private void setupToast(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+    }
+
+    private void updateTemplates(String templates) {
         Intent intent = new Intent(this, AddEditTemplateActivity.class);
         intent.putExtra(Constants.KEY_TEMPLATE, templates);
         startActivity(intent);
     }
 
-    public void deleteTemplate(String id) {
-        TemplatesApi templatesApi = new TemplatesApi();
-        TemplateService templateService = templatesApi.createTemplateService();
-        Call<Void> call = templateService.deleteTemplate(id);
+    private void deleteTemplate(String id) {
+        CrudApi crudApi = new CrudApi();
+        CrudService crudService = crudApi.createCrudService();
+        Call<Void> call = crudService.deleteTemplate(id);
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
-                Toast.makeText(TemplatesActivity.this, "Successfully deleted the data", Toast.LENGTH_SHORT).show();
+               setupToast("Successfully deleted the data");
                 fetchTemplates();
             }
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
-                Toast.makeText(TemplatesActivity.this, "Failed to delete the data", Toast.LENGTH_SHORT).show();
+                setupToast("Failed to delete the data");
             }
         });
     }
@@ -65,10 +71,10 @@ public class TemplatesActivity extends AppCompatActivity {
         fetchTemplates();
     }
 
-    public void fetchTemplates() {
-        TemplatesApi templatesApi = new TemplatesApi();
-        TemplateService templateService = templatesApi.createTemplateService();
-        Call<List<Templates>> call = templateService.fetchTemplates();
+    private void fetchTemplates() {
+        CrudApi crudApi = new CrudApi();
+        CrudService crudService = crudApi.createCrudService();
+        Call<List<Templates>> call = crudService.fetchTemplates();
         call.enqueue(new Callback<List<Templates>>() {
             @Override
             public void onResponse(Call<List<Templates>> call, Response<List<Templates>> response) {
@@ -78,7 +84,7 @@ public class TemplatesActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<List<Templates>> call, Throwable t) {
-                Toast.makeText(TemplatesActivity.this, "Failed to load the data", Toast.LENGTH_SHORT).show();
+                setupToast("Failed to load the data");
             }
         });
 
@@ -101,7 +107,7 @@ public class TemplatesActivity extends AppCompatActivity {
         }
     }
 
-    public void setUpTemplatesRv() {
+    private void setUpTemplatesRv() {
         templatesRv = findViewById(R.id.templates_rv);
         templatesRv.setLayoutManager(new LinearLayoutManager(this));
         templateAdapter = new TemplateAdapter();

@@ -13,9 +13,9 @@ import java.util.List;
 
 public class MessageAdapter extends RecyclerView.Adapter<MessageViewHolder> {
 
-    public List<Messages> messagesList;
+    private List<Messages> messagesList;
 
-    public OnItemActionListener onItemActionListener;
+    private OnItemActionListener onItemActionListener;
 
     public void setData(List<Messages> messagesArrayList){
         messagesList = messagesArrayList;

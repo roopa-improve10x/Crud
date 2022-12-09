@@ -29,21 +29,21 @@ public class DashboardActivity extends AppCompatActivity {
         dashboardList = new ArrayList<>();
         Dashboard dashboard1 = new Dashboard();
         dashboard1.dashboardName = "Messages";
-        dashboard1.dashboardImageUrl = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzbpNLiKR_Of5JXkWqQ55sGukYqff5H0FiUQ&usqp=CAU";
+        dashboard1.dashboardImageUrl = "https://images.macrumors.com/t/xhjvyZvcvdWDIi846TArb8MFzzk=/1600x/article-new/2020/07/messagesicon-200x200.png";
         dashboardList.add(dashboard1);
 
         Dashboard dashboard2 = new Dashboard();
-        dashboard2.dashboardImageUrl = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzbpNLiKR_Of5JXkWqQ55sGukYqff5H0FiUQ&usqp=CAU";
+        dashboard2.dashboardImageUrl = "https://play-lh.googleusercontent.com/ZspusY01v4jlKuMuVikb0WjA-94plHCBvMJZVd3u59W_Kg1I4TPV3-HgB4VE1exhmfI";
         dashboard2.dashboardName = "Templates";
         dashboardList.add(dashboard2);
 
         Dashboard dashboard3 = new Dashboard();
-        dashboard3.dashboardImageUrl = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzbpNLiKR_Of5JXkWqQ55sGukYqff5H0FiUQ&usqp=CAU";
+        dashboard3.dashboardImageUrl = "https://www.peacocktv.com/dam/growth/assets/seo/HarryPotter/Franchise/hp-ss-min.png";
         dashboard3.dashboardName = "Series";
         dashboardList.add(dashboard3);
 
         Dashboard dashboard4 = new Dashboard();
-        dashboard4.dashboardImageUrl = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzbpNLiKR_Of5JXkWqQ55sGukYqff5H0FiUQ&usqp=CAU";
+        dashboard4.dashboardImageUrl = "https://nbcpalmsprings.com/wp-content/uploads/sites/8/2021/12/BEST-MOVIES-OF-2021.jpeg";
         dashboard4.dashboardName = "Movies";
         dashboardList.add(dashboard4);
     }

@@ -25,9 +25,9 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class MessagesActivity extends AppCompatActivity {
-    public ArrayList<Messages> messages = new ArrayList<>();
-    public RecyclerView messagesRv;
-    public MessageAdapter messageAdapter;
+    private ArrayList<Messages> messages = new ArrayList<>();
+    private RecyclerView messagesRv;
+    private MessageAdapter messageAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,13 +42,13 @@ public class MessagesActivity extends AppCompatActivity {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 
-    public void updateMessages(Messages messages) {
+    private void updateMessages(Messages messages) {
         Intent intent = new Intent(this, AddEditMessageActivity.class);
         intent.putExtra(Constants.KEY_MESSAGE, messages);
         startActivity(intent);
     }
 
-    public void deleteMessage(String id) {
+    private void deleteMessage(String id) {
         CrudApi api = new CrudApi();
         CrudService service = api.createCrudService();
         Call<Void> call = service.deleteMessages(id);
@@ -74,7 +74,7 @@ public class MessagesActivity extends AppCompatActivity {
         fetchData();
     }
 
-    public void fetchData() {
+    private void fetchData() {
         Log.i("MessagesActivity", "fetch messages API started");
         CrudApi api = new CrudApi();
         CrudService service = api.createCrudService();
@@ -111,7 +111,7 @@ public class MessagesActivity extends AppCompatActivity {
         }
     }
 
-    public void setUpMessagesRv() {
+    private void setUpMessagesRv() {
         messagesRv = findViewById(R.id.messages_rv);
         messagesRv.setLayoutManager(new LinearLayoutManager(this));
         messageAdapter = new MessageAdapter();

@@ -11,6 +11,8 @@ import android.widget.Toast;
 
 import com.example.crud.Constants;
 import com.example.crud.R;
+import com.example.crud.api.CrudApi;
+import com.example.crud.api.CrudService;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -18,10 +20,10 @@ import retrofit2.Response;
 
 public class AddEditSeriesActivity extends AppCompatActivity {
 
-    public Series series;
-    public EditText seriesIdTxt;
-    public EditText seriesNameTxt;
-    public EditText imageUrlTxt;
+    private Series series;
+    private EditText seriesIdTxt;
+    private EditText seriesNameTxt;
+    private EditText imageUrlTxt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,13 +39,17 @@ public class AddEditSeriesActivity extends AppCompatActivity {
         }
     }
 
-    public void showData(){
+    private void setupToast(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+    }
+
+    private void showData(){
         seriesIdTxt.getText().toString();
         seriesNameTxt.getText().toString();
         imageUrlTxt.getText().toString();
     }
 
-    public void inItViews() {
+    private void inItViews() {
         seriesIdTxt = findViewById(R.id.series_id_txt);
         seriesNameTxt = findViewById(R.id.series_name_txt);
         imageUrlTxt = findViewById(R.id.image_url_txt);
@@ -72,49 +78,48 @@ public class AddEditSeriesActivity extends AppCompatActivity {
         }
     }
 
-    public void addSeries(String seriesIds, String name, String imageUrl) {
+    private void addSeries(String seriesIds, String name, String imageUrl) {
         Series series = new Series();
         series.seriesId = seriesIds;
         series.title = name;
         series.imageUrl = imageUrl;
 
-        SeriesApi seriesApi = new SeriesApi();
-        SeriesService seriesService = seriesApi.createSeriesService();
-        Call<Series> call = seriesService.addSeries(series);
+        CrudApi crudApi = new CrudApi();
+        CrudService crudService = crudApi.createCrudService();
+        Call<Series> call = crudService.addSeries(series);
         call.enqueue(new Callback<Series>() {
             @Override
             public void onResponse(Call<Series> call, Response<Series> response) {
-                Toast.makeText(AddEditSeriesActivity.this, "Successfully added the data", Toast.LENGTH_SHORT).show();
+                setupToast("Successfully added the data");
                 finish();
             }
 
             @Override
             public void onFailure(Call<Series> call, Throwable t) {
-                Toast.makeText(AddEditSeriesActivity.this, "Failed to add the data", Toast.LENGTH_SHORT).show();
+                setupToast("Failed to add the data");
             }
         });
     }
 
-    public void updateSeries(String id, String seriesIds, String name, String imagesUrl) {
+    private void updateSeries(String id, String seriesIds, String name, String imagesUrl) {
         Series series = new Series();
         series.seriesId = seriesIds;
         series.title = name;
         series.imageUrl = imagesUrl;
 
-        SeriesApi seriesApi = new SeriesApi();
-        SeriesService seriesService = seriesApi.createSeriesService();
-        Call<Void> call = seriesService.updateSeries(id, series);
+        CrudApi crudApi = new CrudApi();
+        CrudService crudService = crudApi.createCrudService();
+        Call<Void> call = crudService.updateSeries(id, series);
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
-                Toast.makeText(AddEditSeriesActivity.this, "Successfully updated the data", Toast.LENGTH_SHORT).show();
+                setupToast("Successfully updated the data");
                 finish();
             }
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
-                Toast.makeText(AddEditSeriesActivity.this, "Failed to update the data", Toast.LENGTH_SHORT).show();
-
+                setupToast("Failed to updated data");
             }
         });
        }
