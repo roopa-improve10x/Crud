@@ -7,12 +7,15 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.example.crud.Constants;
 import com.example.crud.R;
+import com.example.crud.api.CrudApi;
+import com.example.crud.api.CrudService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,9 +33,15 @@ public class MessagesActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_messages);
+        Log.i("MessagesActivity", "onCreate method called");
         getSupportActionBar().setTitle("Messages");
         setUpMessagesRv();
     }
+
+    private void setUpToast(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+    }
+
     public void updateMessages(Messages messages) {
         Intent intent = new Intent(this, AddEditMessageActivity.class);
         intent.putExtra(Constants.KEY_MESSAGE, messages);
@@ -40,19 +49,19 @@ public class MessagesActivity extends AppCompatActivity {
     }
 
     public void deleteMessage(String id) {
-        MessagesApi messagesApi = new MessagesApi();
-        MessagesService messagesService = messagesApi.createMessagesService();
-        Call<Void> call = messagesService.deleteMessages(id);
+        CrudApi api = new CrudApi();
+        CrudService service = api.createCrudService();
+        Call<Void> call = service.deleteMessages(id);
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
-                Toast.makeText(MessagesActivity.this, "Successfully delete the data", Toast.LENGTH_SHORT).show();
+                setUpToast("Successfully delete the data");
                 fetchData();
             }
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
-                Toast.makeText(MessagesActivity.this, "Failed to load the data", Toast.LENGTH_SHORT).show();
+                setUpToast("Failed to load the data");
             }
         });
 
@@ -60,24 +69,27 @@ public class MessagesActivity extends AppCompatActivity {
 
     @Override
     protected void onResume() {
+        Log.i("MessagesActivity", "onResume method called");
         super.onResume();
         fetchData();
     }
 
     public void fetchData() {
-        MessagesApi messagesApi = new MessagesApi();
-        MessagesService messagesService = messagesApi.createMessagesService();
-        Call<List<Messages>> call = messagesService.fetchMessages();
+        Log.i("MessagesActivity", "fetch messages API started");
+        CrudApi api = new CrudApi();
+        CrudService service = api.createCrudService();
+        Call<List<Messages>> call = service.fetchMessages();
         call.enqueue(new Callback<List<Messages>>() {
             @Override
             public void onResponse(Call<List<Messages>> call, Response<List<Messages>> response) {
+                Log.i("MessagesActivity", "fetch messages called");
                 List<Messages> messages = response.body();
                 messageAdapter.setData(messages);
             }
 
             @Override
             public void onFailure(Call<List<Messages>> call, Throwable t) {
-                Toast.makeText(MessagesActivity.this, "Failed to load the data", Toast.LENGTH_SHORT).show();
+                setUpToast("Failed to load the data");
             }
         });
     }

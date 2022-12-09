@@ -1,4 +1,4 @@
-package com.example.crud;
+package com.example.crud.movies;
 
 public class Movie {
     public String movieName;

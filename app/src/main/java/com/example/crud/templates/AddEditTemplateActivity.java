@@ -76,7 +76,11 @@ public class AddEditTemplateActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if(item.getItemId() == R.id.add){
             String messageText = templateMessageTxt.getText().toString();
-            addTemplate(messageText);
+            if(templates == null) {
+                addTemplate(messageText);
+            } else {
+                updateTemplates(templates.id, messageText);
+            }
             return true;
         } else {
             return super.onOptionsItemSelected(item);

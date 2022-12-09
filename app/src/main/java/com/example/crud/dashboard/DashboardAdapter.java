@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.crud.MovieListActivity;
+import com.example.crud.movies.MovieListActivity;
 import com.example.crud.series.SeriesListActivity;
 import com.example.crud.templates.TemplatesActivity;
 import com.example.crud.messages.MessagesActivity;

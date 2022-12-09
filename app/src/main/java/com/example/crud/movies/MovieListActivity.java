@@ -1,4 +1,4 @@
-package com.example.crud;
+package com.example.crud.movies;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -6,6 +6,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.widget.Toast;
+
+import com.example.crud.R;
 
 import java.util.ArrayList;
 import java.util.List;

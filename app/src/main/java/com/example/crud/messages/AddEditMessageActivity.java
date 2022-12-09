@@ -11,6 +11,8 @@ import android.widget.Toast;
 
 import com.example.crud.Constants;
 import com.example.crud.R;
+import com.example.crud.api.CrudApi;
+import com.example.crud.api.CrudService;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -37,25 +39,29 @@ public class AddEditMessageActivity extends AppCompatActivity {
         }
     }
 
+    public void setUpToast(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+    }
+
     public void updateMessage(String id, String name, String phoneNumber, String messageText) {
         Messages messages = new Messages();
         messages.name = name;
         messages.id= id;
         messages.mobileNo = phoneNumber;
         messages.message = messageText;
-        MessagesApi messagesApi = new MessagesApi();
-        MessagesService messagesService = messagesApi.createMessagesService();
-        Call<Void> call = messagesService.updateMessages(id, messages);
+        CrudApi api = new CrudApi();
+        CrudService service = api.createCrudService();
+        Call<Void> call = service.updateMessages(id, messages);
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
-                Toast.makeText(AddEditMessageActivity.this, "Successfully updated data", Toast.LENGTH_SHORT).show();
+                setUpToast("Successfully updated the data");
                 finish();
             }
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
-                Toast.makeText(AddEditMessageActivity.this, "Failed to update the data", Toast.LENGTH_SHORT).show();
+                setUpToast("Failed to update the data");
             }
         });
 
@@ -85,7 +91,11 @@ public class AddEditMessageActivity extends AppCompatActivity {
             String name = addNameTxt.getText().toString();
             String number = phoneNumberTxt.getText().toString();
             String message = addMessageTxt.getText().toString();
-            addMessage(name, number, message);
+            if(messages == null) {
+                addMessage(name, number, message);
+            } else {
+                updateMessage(messages.id, name, number, message);
+            }
             return true;
         } else{
             return super.onOptionsItemSelected(item);
@@ -98,19 +108,19 @@ public class AddEditMessageActivity extends AppCompatActivity {
         messages.mobileNo = phoneNumber;
         messages.message = messageText;
 
-        MessagesApi messagesApi = new MessagesApi();
-        MessagesService messagesService = messagesApi.createMessagesService();
-        Call<Messages> call = messagesService.addMessages(messages);
+        CrudApi api = new CrudApi();
+        CrudService service = api.createCrudService();
+        Call<Messages> call = service.addMessages(messages);
         call.enqueue(new Callback<Messages>() {
             @Override
             public void onResponse(Call<Messages> call, Response<Messages> response) {
-                Toast.makeText(AddEditMessageActivity.this, "Successfully added the data", Toast.LENGTH_SHORT).show();
+                setUpToast("Successfully added the data");
                 finish();
             }
 
             @Override
             public void onFailure(Call<Messages> call, Throwable t) {
-                Toast.makeText(AddEditMessageActivity.this, "Failed to add the data", Toast.LENGTH_SHORT).show();
+                setUpToast("Failed to add data");
             }
         });
     }

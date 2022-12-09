@@ -1,8 +1,10 @@
-package com.example.crud;
+package com.example.crud.movies;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.example.crud.R;
 
 public class AddEditMovieActivity extends AppCompatActivity {
 
