@@ -16,15 +16,17 @@ import com.example.crud.Constants;
 import com.example.crud.R;
 import com.example.crud.api.CrudApi;
 import com.example.crud.api.CrudService;
+import com.example.crud.base.BaseActivity;
 
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class MessagesActivity extends AppCompatActivity {
+public class MessagesActivity extends BaseActivity {
     private ArrayList<Messages> messages = new ArrayList<>();
     private RecyclerView messagesRv;
     private MessageAdapter messageAdapter;
@@ -33,13 +35,9 @@ public class MessagesActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_messages);
-        Log.i("MessagesActivity", "onCreate method called");
+        log("onCreate method started");
         getSupportActionBar().setTitle("Messages");
         setUpMessagesRv();
-    }
-
-    private void setUpToast(String message) {
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 
     private void updateMessages(Messages messages) {
@@ -55,13 +53,13 @@ public class MessagesActivity extends AppCompatActivity {
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
-                setUpToast("Successfully delete the data");
+                showLongToast("Successfully deleted the message");
                 fetchData();
             }
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
-                setUpToast("Failed to load the data");
+                showToast("Failed to load the data");
             }
         });
 
@@ -69,27 +67,27 @@ public class MessagesActivity extends AppCompatActivity {
 
     @Override
     protected void onResume() {
-        Log.i("MessagesActivity", "onResume method called");
+        log("onResume");
         super.onResume();
         fetchData();
     }
 
     private void fetchData() {
-        Log.i("MessagesActivity", "fetch messages API started");
+        log("fetchMessages API started");
         CrudApi api = new CrudApi();
         CrudService service = api.createCrudService();
         Call<List<Messages>> call = service.fetchMessages();
         call.enqueue(new Callback<List<Messages>>() {
             @Override
             public void onResponse(Call<List<Messages>> call, Response<List<Messages>> response) {
-                Log.i("MessagesActivity", "fetch messages called");
+                log("fetchMessages called");
                 List<Messages> messages = response.body();
                 messageAdapter.setData(messages);
             }
 
             @Override
             public void onFailure(Call<List<Messages>> call, Throwable t) {
-                setUpToast("Failed to load the data");
+                showToast("Failed to load the data");
             }
         });
     }

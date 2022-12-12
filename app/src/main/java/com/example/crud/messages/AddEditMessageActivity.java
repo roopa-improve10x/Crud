@@ -13,12 +13,13 @@ import com.example.crud.Constants;
 import com.example.crud.R;
 import com.example.crud.api.CrudApi;
 import com.example.crud.api.CrudService;
+import com.example.crud.base.BaseActivity;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class AddEditMessageActivity extends AppCompatActivity {
+public class AddEditMessageActivity extends BaseActivity {
 
     private Messages messages;
     private EditText addNameTxt;
@@ -39,10 +40,6 @@ public class AddEditMessageActivity extends AppCompatActivity {
         }
     }
 
-    private void setUpToast(String message) {
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
-    }
-
     private void updateMessage(String id, String name, String phoneNumber, String messageText) {
         Messages messages = new Messages();
         messages.name = name;
@@ -55,13 +52,13 @@ public class AddEditMessageActivity extends AppCompatActivity {
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
-                setUpToast("Successfully updated the data");
+                showToast("Successfully updated the data");
                 finish();
             }
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
-                setUpToast("Failed to update the data");
+                showToast("Failed to update the data");
             }
         });
 
@@ -114,13 +111,13 @@ public class AddEditMessageActivity extends AppCompatActivity {
         call.enqueue(new Callback<Messages>() {
             @Override
             public void onResponse(Call<Messages> call, Response<Messages> response) {
-                setUpToast("Successfully added the data");
+                showToast("Successfully added the data");
                 finish();
             }
 
             @Override
             public void onFailure(Call<Messages> call, Throwable t) {
-                setUpToast("Failed to add data");
+                showToast("Failed to add data");
             }
         });
     }

@@ -59,7 +59,7 @@ public class SeriesListActivity extends AppCompatActivity {
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
-                setupToast("Successuflly deleted the data");
+                setupToast("Succesufully deleted the data");
                 fetchSeries();
             }
 
