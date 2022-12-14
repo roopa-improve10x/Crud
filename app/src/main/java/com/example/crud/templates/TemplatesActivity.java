@@ -1,7 +1,6 @@
 package com.example.crud.templates;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -9,12 +8,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import com.example.crud.Constants;
 import com.example.crud.R;
 import com.example.crud.api.CrudApi;
 import com.example.crud.api.CrudService;
+import com.example.crud.base.BaseActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,7 +22,9 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class TemplatesActivity extends AppCompatActivity {
+public class TemplatesActivity extends BaseActivity {
+
+    //Todo: rename to templateList
 
     private ArrayList<Templates> templatesList = new ArrayList<>();
     private RecyclerView templatesRv;
@@ -35,14 +36,13 @@ public class TemplatesActivity extends AppCompatActivity {
         setContentView(R.layout.activity_templates);
         getSupportActionBar().setTitle("Templates");
         setUpTemplatesRv();
+        log("onCreate");
     }
 
-    private void setupToast(String message) {
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
-    }
+    private void updateTemplates(Templates templates) {
+        //Todo: rename to updateTemplate
 
-    private void updateTemplates(String templates) {
-        Intent intent = new Intent(this, AddEditTemplateActivity.class);
+        Intent intent = new Intent(this, EditTemplateActivity.class);
         intent.putExtra(Constants.KEY_TEMPLATE, templates);
         startActivity(intent);
     }
@@ -54,19 +54,20 @@ public class TemplatesActivity extends AppCompatActivity {
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
-               setupToast("Successfully deleted the data");
-                fetchTemplates();
+               showToast("Successfully deleted the data");
+               fetchTemplates();
             }
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
-                setupToast("Failed to delete the data");
+                showToast("Failed to delete the data");
             }
         });
     }
 
     @Override
     protected void onResume() {
+        log("onResume");
         super.onResume();
         fetchTemplates();
     }
@@ -84,7 +85,7 @@ public class TemplatesActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<List<Templates>> call, Throwable t) {
-                setupToast("Failed to load the data");
+                showToast("Failed to load the data");
             }
         });
 
@@ -99,7 +100,7 @@ public class TemplatesActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == R.id.add) {
-            Intent intent = new Intent(this, AddEditTemplateActivity.class);
+            Intent intent = new Intent(this, AddTemplateActivity.class);
             startActivity(intent);
             return true;
         } else {
@@ -108,6 +109,8 @@ public class TemplatesActivity extends AppCompatActivity {
     }
 
     private void setUpTemplatesRv() {
+        //Todo: rename to setupTemplatesRv
+
         templatesRv = findViewById(R.id.templates_rv);
         templatesRv.setLayoutManager(new LinearLayoutManager(this));
         templateAdapter = new TemplateAdapter();
@@ -115,7 +118,7 @@ public class TemplatesActivity extends AppCompatActivity {
         templatesRv.setAdapter(templateAdapter);
         templateAdapter.setOnItemActionListener(new OnItemActionListener() {
             @Override
-            public void onEdit(String templates) {
+            public void onEdit(Templates templates) {
                 updateTemplates(templates);
             }
 

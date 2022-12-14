@@ -18,13 +18,19 @@ import com.squareup.picasso.Picasso;
 import java.util.List;
 
 public class DashboardAdapter extends RecyclerView.Adapter<DashboardViewHolder>{
+    // Todo: change the class name as DashboardItemsAdapter
+    // Todo: change the class viewHolder name as DashboardItemViewHolder
 
     public List<Dashboard> dashboardArrayList;
+    // Todo: change the dashboardArrayList as dashboardItemList
 
     public void setData(List<Dashboard> dashboards){
+        // Todo: use this keyword
         dashboardArrayList = dashboards;
+        // Todo: change dashboards as dashboardItemList
         notifyDataSetChanged();
     }
+
     @NonNull
     @Override
     public DashboardViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {

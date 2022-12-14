@@ -11,10 +11,12 @@ import com.example.crud.R;
 import java.util.ArrayList;
 
 public class DashboardActivity extends AppCompatActivity {
-
+    //Todo : change the class name as DashboardItemsActivity
     public ArrayList<Dashboard> dashboardList; //= new ArrayList<>();
     public RecyclerView dashboardRv;
+    //Todo : change the recycler view name as dashboardItemsRv
     public DashboardAdapter dashboardAdapter;
+    //Todo : change the adapter name as dashboardItemsAdapter
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +28,7 @@ public class DashboardActivity extends AppCompatActivity {
     }
 
     public void setUpData() {
+        //Todo: in setupmethod U should be in lower case
         dashboardList = new ArrayList<>();
         Dashboard dashboard1 = new Dashboard();
         dashboard1.dashboardName = "Messages";
@@ -49,7 +52,9 @@ public class DashboardActivity extends AppCompatActivity {
     }
 
     public void setDashboardRv() {
+        // Todo: change the name as setupDashboardItemsRv
         dashboardRv = findViewById(R.id.dashboard_rv);
+        // Todo: create a separate method for id's
         dashboardRv.setLayoutManager(new LinearLayoutManager(this));
         dashboardAdapter = new DashboardAdapter();
         dashboardAdapter.setData(dashboardList);

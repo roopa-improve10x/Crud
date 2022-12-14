@@ -13,9 +13,11 @@ import com.example.crud.R;
 import com.squareup.picasso.Picasso;
 
 public class DashboardViewHolder extends RecyclerView.ViewHolder {
+
     ImageView dashboardImg;
     TextView dashboardTxt;
     View itemLayout;
+
     public DashboardViewHolder(@NonNull View itemView) {
         super(itemView);
         dashboardTxt = itemView.findViewById(R.id.dashboard_Txt);

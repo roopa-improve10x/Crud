@@ -12,12 +12,16 @@ import com.example.crud.R;
 import java.util.List;
 
 public class TemplateAdapter extends RecyclerView.Adapter<TemplateViewHolder> {
+    //Todo: rename class name templatesAdapter
 
     private List<Templates> templatesList;
+    //Todo: rename to templateList
 
     private OnItemActionListener onItemActionListener;
 
     public void setData(List<Templates> templatesArrayList){
+        //Todo: rename to templateList
+        //Todo: use this keyword
         templatesList = templatesArrayList;
         notifyDataSetChanged();
     }
@@ -42,7 +46,7 @@ public class TemplateAdapter extends RecyclerView.Adapter<TemplateViewHolder> {
             onItemActionListener.onDelete(templates.id);
         });
         holder.itemView.setOnClickListener(view -> {
-            onItemActionListener.onEdit(templates.messageText);
+            onItemActionListener.onEdit(templates);
         });
     }
 

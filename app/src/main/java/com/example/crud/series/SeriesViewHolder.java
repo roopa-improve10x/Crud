@@ -12,9 +12,11 @@ import com.example.crud.R;
 import com.squareup.picasso.Picasso;
 
 public class SeriesViewHolder extends RecyclerView.ViewHolder {
+
     ImageView seriesImgView;
     TextView seriesImgTxt;
     ImageButton seriesCancelBtn;
+
     public SeriesViewHolder(@NonNull View itemView) {
         super(itemView);
         seriesImgTxt = itemView.findViewById(R.id.series_image_txt);

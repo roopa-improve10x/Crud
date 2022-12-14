@@ -1,16 +1,13 @@
 package com.example.crud.messages;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import com.example.crud.Constants;
 import com.example.crud.R;
@@ -19,7 +16,6 @@ import com.example.crud.api.CrudService;
 import com.example.crud.base.BaseActivity;
 
 import java.util.ArrayList;
-import java.util.Base64;
 import java.util.List;
 
 import retrofit2.Call;
@@ -27,6 +23,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class MessagesActivity extends BaseActivity {
+
     private ArrayList<Messages> messages = new ArrayList<>();
     private RecyclerView messagesRv;
     private MessageAdapter messageAdapter;
@@ -38,31 +35,6 @@ public class MessagesActivity extends BaseActivity {
         log("onCreate method started");
         getSupportActionBar().setTitle("Messages");
         setUpMessagesRv();
-    }
-
-    private void updateMessages(Messages messages) {
-        Intent intent = new Intent(this, AddEditMessageActivity.class);
-        intent.putExtra(Constants.KEY_MESSAGE, messages);
-        startActivity(intent);
-    }
-
-    private void deleteMessage(String id) {
-        CrudApi api = new CrudApi();
-        CrudService service = api.createCrudService();
-        Call<Void> call = service.deleteMessages(id);
-        call.enqueue(new Callback<Void>() {
-            @Override
-            public void onResponse(Call<Void> call, Response<Void> response) {
-                showLongToast("Successfully deleted the message");
-                fetchData();
-            }
-
-            @Override
-            public void onFailure(Call<Void> call, Throwable t) {
-                showToast("Failed to load the data");
-            }
-        });
-
     }
 
     @Override
@@ -101,7 +73,7 @@ public class MessagesActivity extends BaseActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if(item.getItemId() == R.id.add){
-            Intent intent = new Intent(this, AddEditMessageActivity.class);
+            Intent intent = new Intent(this, AddMessageActivity.class);
             startActivity(intent);
             return true;
         } else {
@@ -110,6 +82,7 @@ public class MessagesActivity extends BaseActivity {
     }
 
     private void setUpMessagesRv() {
+        //Todo: change to setupMessageItemsRv()
         messagesRv = findViewById(R.id.messages_rv);
         messagesRv.setLayoutManager(new LinearLayoutManager(this));
         messageAdapter = new MessageAdapter();
@@ -126,5 +99,30 @@ public class MessagesActivity extends BaseActivity {
             }
         });
         messagesRv.setAdapter(messageAdapter);
+    }
+
+    private void deleteMessage(String id) {
+        CrudApi api = new CrudApi();
+        CrudService service = api.createCrudService();
+        Call<Void> call = service.deleteMessages(id);
+        call.enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                showLongToast("Successfully deleted the message");
+                fetchData();
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                showToast("Failed to load the data");
+            }
+        });
+    }
+
+    private void updateMessages(Messages messages) {
+        //Todo: change the method name as updatemessage
+        Intent intent = new Intent(this, EditMessageActivity.class);
+        intent.putExtra(Constants.KEY_MESSAGE, messages);
+        startActivity(intent);
     }
 }

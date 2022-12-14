@@ -13,12 +13,17 @@ import com.squareup.picasso.Picasso;
 import java.util.List;
 
 public class SeriesAdapter extends RecyclerView.Adapter<SeriesViewHolder> {
+    //Todo: seriesListAdapter
 
-    private List<Series> seriesArrayList;
+    public List<Series> seriesArrayList;
+    //Todo: rename to seriesList
 
-    private OnItemActionListener onItemActionListener;
+    public OnItemActionListener onItemActionListener;
 
     public void setData(List<Series> series){
+        //Todo: rename to SeriesList
+        // Todo: use this keyword
+
         seriesArrayList = series;
         notifyDataSetChanged();
     }

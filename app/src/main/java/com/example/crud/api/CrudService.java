@@ -2,6 +2,7 @@ package com.example.crud.api;
 
 import com.example.crud.Constants;
 import com.example.crud.messages.Messages;
+import com.example.crud.movies.Movie;
 import com.example.crud.series.Series;
 import com.example.crud.templates.Templates;
 
@@ -19,6 +20,8 @@ public interface CrudService {
 
     @GET(Constants.MESSAGE_END_POINT)
     Call<List<Messages>> fetchMessages();
+
+    //Todo : change all the method names into singular words.
 
     @POST(Constants.MESSAGE_END_POINT)
     Call<Messages> addMessages(@Body Messages messages);
@@ -43,6 +46,7 @@ public interface CrudService {
 
     @GET(Constants.SERIES_END_POINT)
     Call<List<Series>> fetchSeries();
+    //rename to seriesList
 
     @POST(Constants.SERIES_END_POINT)
     Call<Series> addSeries(@Body Series series);
@@ -52,5 +56,19 @@ public interface CrudService {
 
     @PUT(Constants.SERIES_END_POINT + "{/id}")
     Call<Void> updateSeries(@Path("id") String id, @Body Series series);
+
+    @GET(Constants.MOVIES_END_POINT)
+    Call<List<Movie>> fetchMovies();
+
+    @POST(Constants.MOVIES_END_POINT)
+    Call<Movie> addMovie(@Body Movie movie);
+
+    @PUT(Constants.MOVIES_END_POINT + "{/id}")
+    Call<Void> updateMovie(@Path("id") String id, @Body Movie movie);
+
+    @DELETE(Constants.MOVIES_END_POINT + "{/id}")
+    Call<Void> deleteMovie(@Path("id") String id);
+
+
 
 }
