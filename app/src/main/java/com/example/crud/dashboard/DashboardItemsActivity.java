@@ -14,7 +14,7 @@ public class DashboardItemsActivity extends AppCompatActivity {
     public ArrayList<DashboardItem> dashboardItems;
     public RecyclerView dashboardItemsRv;
     public DashboardItemsAdapter dashboardAdapter;
-    //Todo : change the adapter name as dashboardItemsAdapter
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
