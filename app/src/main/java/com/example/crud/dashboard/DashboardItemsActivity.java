@@ -12,8 +12,7 @@ import java.util.ArrayList;
 
 public class DashboardItemsActivity extends AppCompatActivity {
     public ArrayList<DashboardItem> dashboardItems;
-    public RecyclerView dashboardRv;
-    //Todo : change the recycler view name as dashboardItemsRv
+    public RecyclerView dashboardItemsRv;
     public DashboardAdapter dashboardAdapter;
     //Todo : change the adapter name as dashboardItemsAdapter
 
@@ -52,11 +51,11 @@ public class DashboardItemsActivity extends AppCompatActivity {
 
     public void setDashboardRv() {
         // Todo: change the name as setupDashboardItemsRv
-        dashboardRv = findViewById(R.id.dashboard_rv);
+        dashboardItemsRv = findViewById(R.id.dashboard_rv);
         // Todo: create a separate method for id's
-        dashboardRv.setLayoutManager(new LinearLayoutManager(this));
+        dashboardItemsRv.setLayoutManager(new LinearLayoutManager(this));
         dashboardAdapter = new DashboardAdapter();
         dashboardAdapter.setData(dashboardItems);
-        dashboardRv.setAdapter(dashboardAdapter);
+        dashboardItemsRv.setAdapter(dashboardAdapter);
     }
 }
