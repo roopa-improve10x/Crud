@@ -10,9 +10,8 @@ import com.example.crud.R;
 
 import java.util.ArrayList;
 
-public class DashboardActivity extends AppCompatActivity {
-    //Todo : change the class name as DashboardItemsActivity
-    public ArrayList<DashboardItem> dashboardItems; //= new ArrayList<>();
+public class DashboardItemsActivity extends AppCompatActivity {
+    public ArrayList<DashboardItem> dashboardItems;
     public RecyclerView dashboardRv;
     //Todo : change the recycler view name as dashboardItemsRv
     public DashboardAdapter dashboardAdapter;

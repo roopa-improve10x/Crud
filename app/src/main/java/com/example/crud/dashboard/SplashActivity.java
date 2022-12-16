@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.os.Handler;
 
 import com.example.crud.R;
-import com.example.crud.dashboard.DashboardActivity;
 
 public class SplashActivity extends AppCompatActivity {
 
@@ -17,7 +16,7 @@ public class SplashActivity extends AppCompatActivity {
         setContentView(R.layout.activity_splash);getSupportActionBar().hide();
         Handler handler = new Handler();
         handler.postDelayed(() -> {
-            Intent intent = new Intent(this, DashboardActivity.class);
+            Intent intent = new Intent(this, DashboardItemsActivity.class);
             startActivity(intent);
         }, 5000);
     }
