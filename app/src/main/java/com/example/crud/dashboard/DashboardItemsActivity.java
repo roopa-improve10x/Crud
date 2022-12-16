@@ -13,8 +13,8 @@ import java.util.ArrayList;
 public class DashboardItemsActivity extends AppCompatActivity {
     public ArrayList<DashboardItem> dashboardItems;
     public RecyclerView dashboardItemsRv;
-    public DashboardAdapter dashboardAdapter;
-    //Todo : change the adapter name as dashboardItemsAdapter
+    public DashboardItemsAdapter dashboardAdapter;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +52,7 @@ public class DashboardItemsActivity extends AppCompatActivity {
         dashboardItemsRv = findViewById(R.id.dashboard_rv);
         // Todo: create a separate method for id's
         dashboardItemsRv.setLayoutManager(new LinearLayoutManager(this));
-        dashboardAdapter = new DashboardAdapter();
+        dashboardAdapter = new DashboardItemsAdapter();
         dashboardAdapter.setData(dashboardItems);
         dashboardItemsRv.setAdapter(dashboardAdapter);
     }
