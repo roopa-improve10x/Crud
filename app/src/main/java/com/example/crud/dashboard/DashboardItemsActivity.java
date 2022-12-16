@@ -21,12 +21,11 @@ public class DashboardItemsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
         getSupportActionBar().hide();
-        setUpData();
-        setDashboardRv();
+        setupData();
+        setupDashboardItemsRv();
     }
 
-    public void setUpData() {
-        //Todo: in setupmethod U should be in lower case
+    public void setupData() {
         dashboardItems = new ArrayList<>();
         DashboardItem messages = new DashboardItem();
         messages.dashboardName = "Messages";
@@ -49,8 +48,7 @@ public class DashboardItemsActivity extends AppCompatActivity {
         dashboardItems.add(movies);
     }
 
-    public void setDashboardRv() {
-        // Todo: change the name as setupDashboardItemsRv
+    public void setupDashboardItemsRv() {
         dashboardItemsRv = findViewById(R.id.dashboard_rv);
         // Todo: create a separate method for id's
         dashboardItemsRv.setLayoutManager(new LinearLayoutManager(this));
