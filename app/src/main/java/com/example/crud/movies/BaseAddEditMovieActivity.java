@@ -1,9 +1,7 @@
 package com.example.crud.movies;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -46,6 +44,11 @@ public class BaseAddEditMovieActivity extends BaseActivity {
         crudService = api.createCrudService();
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.add_edit_movie_menu, menu);
+        return true;
+    }
 
     private void fetchSeries() {
         CrudApi api = new CrudApi();

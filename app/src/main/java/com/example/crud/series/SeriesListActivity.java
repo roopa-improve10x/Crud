@@ -72,7 +72,7 @@ public class SeriesListActivity extends BaseActivity {
     }
 
     private void fetchSeries() {
-        //rename to fetchSeriesList()
+        //Todo: rename to fetchSeriesList()
 
         CrudApi crudApi = new CrudApi();
         CrudService crudService = crudApi.createCrudService();
@@ -111,7 +111,7 @@ public class SeriesListActivity extends BaseActivity {
     }
 
     private void setUpSeriesRv() {
-        // rename to setupSeriesListRv()
+        // Todo: rename to setupSeriesListRv()
 
         seriesRv = findViewById(R.id.series_rv);
         seriesRv.setLayoutManager(new LinearLayoutManager(this));

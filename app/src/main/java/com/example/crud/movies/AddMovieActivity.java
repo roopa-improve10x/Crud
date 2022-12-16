@@ -24,7 +24,7 @@ public class AddMovieActivity extends BaseAddEditMovieActivity{
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if(item.getItemId() == R.id.add) {
+        if(item.getItemId() == R.id.done) {
             String movieId = movieIdTxt.getText().toString();
             Series series = (Series) spinnerSp.getSelectedItem();
             String seriesId = series.seriesId;
@@ -38,10 +38,10 @@ public class AddMovieActivity extends BaseAddEditMovieActivity{
         }
     }
 
-    private void addMovie(String movieId, String serireId, String imageUrl, String title, String description) {
+    private void addMovie(String movieId, String seriesId, String imageUrl, String title, String description) {
         Movie movie = new Movie();
         movie.movieId = movieId;
-        movie.seriesId = serireId;
+        movie.seriesId = seriesId;
         movie.movieImageUrl = imageUrl;
         movie.movieName = title;
         movie.description = description;

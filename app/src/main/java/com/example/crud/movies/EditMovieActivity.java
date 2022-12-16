@@ -31,7 +31,7 @@ public class EditMovieActivity extends BaseAddEditMovieActivity{
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if(item.getItemId() == R.id.add) {
+        if(item.getItemId() == R.id.done) {
             String movieId = movieIdTxt.getText().toString();
             Series series = (Series) spinnerSp.getSelectedItem();
             String seriesId = series.seriesId;

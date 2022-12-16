@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 public class DashboardActivity extends AppCompatActivity {
     //Todo : change the class name as DashboardItemsActivity
-    public ArrayList<Dashboard> dashboardList; //= new ArrayList<>();
+    public ArrayList<DashboardItem> dashboardList; //= new ArrayList<>();
     public RecyclerView dashboardRv;
     //Todo : change the recycler view name as dashboardItemsRv
     public DashboardAdapter dashboardAdapter;
@@ -30,22 +30,22 @@ public class DashboardActivity extends AppCompatActivity {
     public void setUpData() {
         //Todo: in setupmethod U should be in lower case
         dashboardList = new ArrayList<>();
-        Dashboard dashboard1 = new Dashboard();
+        DashboardItem dashboard1 = new DashboardItem();
         dashboard1.dashboardName = "Messages";
         dashboard1.dashboardImageUrl = "https://images.macrumors.com/t/xhjvyZvcvdWDIi846TArb8MFzzk=/1600x/article-new/2020/07/messagesicon-200x200.png";
         dashboardList.add(dashboard1);
 
-        Dashboard dashboard2 = new Dashboard();
+        DashboardItem dashboard2 = new DashboardItem();
         dashboard2.dashboardImageUrl = "https://play-lh.googleusercontent.com/ZspusY01v4jlKuMuVikb0WjA-94plHCBvMJZVd3u59W_Kg1I4TPV3-HgB4VE1exhmfI";
         dashboard2.dashboardName = "Templates";
         dashboardList.add(dashboard2);
 
-        Dashboard dashboard3 = new Dashboard();
+        DashboardItem dashboard3 = new DashboardItem();
         dashboard3.dashboardImageUrl = "https://www.peacocktv.com/dam/growth/assets/seo/HarryPotter/Franchise/hp-ss-min.png";
         dashboard3.dashboardName = "Series";
         dashboardList.add(dashboard3);
 
-        Dashboard dashboard4 = new Dashboard();
+        DashboardItem dashboard4 = new DashboardItem();
         dashboard4.dashboardImageUrl = "https://nbcpalmsprings.com/wp-content/uploads/sites/8/2021/12/BEST-MOVIES-OF-2021.jpeg";
         dashboard4.dashboardName = "Movies";
         dashboardList.add(dashboard4);

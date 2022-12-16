@@ -29,10 +29,10 @@ public class EditMessageActivity extends BaseAddEditMessageActivity{
     }
 
     private void showData(){
-        //rename nameTxt
+        //Todo: rename nameTxt
         addNameTxt.setText(messages.name);
         addMessageTxt.setText(messages.message);
-        // rename messageTxt
+        //Todo: rename messageTxt
         phoneNumberTxt.setText(messages.mobileNo);
     }
 
