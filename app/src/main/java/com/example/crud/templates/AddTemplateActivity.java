@@ -32,6 +32,8 @@ public class AddTemplateActivity extends BaseAddEditTemplateActivity{
         }
     }
 
+    // Todo: create a method for apiService
+
     private void addTemplate(String messageText) {
         Templates templates = new Templates();
         templates.messageText = messageText;
