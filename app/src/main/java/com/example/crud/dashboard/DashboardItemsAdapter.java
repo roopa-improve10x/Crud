@@ -20,10 +20,10 @@ import java.util.List;
 public class DashboardItemsAdapter extends RecyclerView.Adapter<DashboardViewHolder>{
     // Todo: change the class viewHolder name as DashboardItemViewHolder
 
-    public List<DashboardItem> dashboardItemList;
+    public List<DashboardItem> dashboardItems;
 
-    public void setData(List<DashboardItem> dashboardItemList){
-        this.dashboardItemList = dashboardItemList;
+    public void setData(List<DashboardItem> dashboardItems){
+        this.dashboardItems = dashboardItems;
         notifyDataSetChanged();
     }
 
@@ -37,7 +37,7 @@ public class DashboardItemsAdapter extends RecyclerView.Adapter<DashboardViewHol
 
     @Override
     public void onBindViewHolder(@NonNull DashboardViewHolder holder, int position) {
-        DashboardItem dashboard = dashboardItemList.get(position);
+        DashboardItem dashboard = dashboardItems.get(position);
         holder.dashboardTxt.setText(dashboard.dashboardName);
         Picasso.get().load(dashboard.dashboardImageUrl).into(holder.dashboardImg);
         holder.itemLayout.setOnClickListener(view -> {
@@ -60,6 +60,6 @@ public class DashboardItemsAdapter extends RecyclerView.Adapter<DashboardViewHol
 
     @Override
     public int getItemCount() {
-        return dashboardItemList.size();
+        return dashboardItems.size();
     }
 }
