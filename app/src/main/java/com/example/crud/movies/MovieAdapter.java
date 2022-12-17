@@ -14,36 +14,44 @@ import java.util.List;
 
 public class MovieAdapter extends RecyclerView.Adapter<MovieViewHolder> {
 
-    public List<Movie> movieList;
+    public List<Movie> movies;
 
     public OnItemActionListener onItemActionListener;
 
-    public void setData(List<Movie> movieArrayList) {
-        movieList = movieArrayList;
+    void setData(List<Movie> movies) {
+        this.movies = movies;
         notifyDataSetChanged();
     }
 
-    public void setOnItemActionListener(OnItemActionListener onItemActionListener) {
+    void setOnItemActionListener(OnItemActionListener onItemActionListener) {
         this.onItemActionListener = onItemActionListener;
     }
 
     @NonNull
     @Override
     public MovieViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.movie_layout_item, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.movie_item, parent, false);
         MovieViewHolder movieViewHolder = new MovieViewHolder(view);
         return movieViewHolder;
     }
 
     @Override
     public void onBindViewHolder(@NonNull MovieViewHolder holder, int position) {
-        Movie movie = movieList.get(position);
+        Movie movie = movies.get(position);
         holder.movieNameTxt.setText(movie.movieName);
-        Picasso.get().load(movie.movieImageUrl).into(holder.movieImgView);
+        if(movie.movieImageUrl != null && movie.movieImageUrl.isEmpty() == false) {
+            Picasso.get().load(movie.movieImageUrl).into(holder.movieImgView);
+        }
+        holder.movieCancelBtn.setOnClickListener(view -> {
+            onItemActionListener.onDelete(movie.id);
+        });
+        holder.itemView.setOnClickListener(view -> {
+            onItemActionListener.onEdit(movie);
+        });
     }
 
     @Override
     public int getItemCount() {
-        return movieList.size();
+        return movies.size();
     }
 }

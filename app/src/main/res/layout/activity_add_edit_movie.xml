@@ -43,7 +43,7 @@
         android:text="Series" />
 
     <Spinner
-        android:id="@+id/movie_series_sp"
+        android:id="@+id/series_items_sp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 

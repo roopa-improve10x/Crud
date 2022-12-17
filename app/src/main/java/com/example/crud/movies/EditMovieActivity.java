@@ -22,8 +22,8 @@ public class EditMovieActivity extends BaseAddEditMovieActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getSupportActionBar().setTitle("Edit movie");
         if(getIntent().hasExtra(Constants.KEY_MOVIE)){
-            getSupportActionBar().setTitle("Edit MOvie");
             movie = (Movie) getIntent().getSerializableExtra(Constants.KEY_MOVIE);
             showData();
         }
@@ -33,53 +33,32 @@ public class EditMovieActivity extends BaseAddEditMovieActivity{
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if(item.getItemId() == R.id.done) {
             String movieId = movieIdTxt.getText().toString();
-            Series series = (Series) spinnerSp.getSelectedItem();
+            Series series = (Series) seriesItemsSp.getSelectedItem();
             String seriesId = series.seriesId;
             String imageUrl = imageUrlTxt.getText().toString();
             String movieName = movieNameTxt.getText().toString();
             String description = movieDescriptionTxt.getText().toString();
-            updateMovie( movie.movieId, movieId, seriesId, imageUrl, movieName, description);
+            updateMovie( movie.id, movieId, seriesId, movieName, imageUrl, description);
             return true;
         } else {
             return super.onOptionsItemSelected(item);
         }
     }
 
-    private void updateMovie(String id, String movieId, String seriesId, String imageUrl, String movieName, String description) {
-        Movie movie = new Movie();
-        movie.movieId = movieId;
-        movie.seriesId = seriesId;
-        movie.movieImageUrl = imageUrl;
-        movie.movieName = movieName;
-        movie.description = description;
-
-        CrudApi crudApi = new CrudApi();
-        CrudService crudService = crudApi.createCrudService();
+    private void updateMovie(String id, String movieId, String seriesId, String movieName, String imageUrl, String description) {
+        Movie movie = new Movie(movieId, seriesId, movieName, imageUrl, description);
         Call<Void> call = crudService.updateMovie(id, movie);
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
-                showToast("Successfully updated data");
+                showToast("Successfully updated movie");
                 finish();
             }
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
-                showToast("Failed to update data");
+                showToast("Failed to update movie");
             }
         });
-    }
-
-    private void showData() {
-        movieIdTxt.setText(movie.movieId);
-        movieNameTxt.setText(movie.movieName);
-        imageUrlTxt.setText(movie.movieImageUrl);
-        movieDescriptionTxt.setText(movie.description);
-        for(int i = 0; i < customSeriesAdapter.getCount(); i++) {
-            Series series = customSeriesAdapter.getItem(i);
-            if(movie.id.equals(series.id)) {
-                spinnerSp.setSelection(i);
-            }
-        }
     }
 }

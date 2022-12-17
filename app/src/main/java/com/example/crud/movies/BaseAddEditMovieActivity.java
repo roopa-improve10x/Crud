@@ -1,10 +1,7 @@
 package com.example.crud.movies;
 
-import androidx.annotation.NonNull;
-
 import android.os.Bundle;
 import android.view.Menu;
-import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.Spinner;
 
@@ -22,10 +19,11 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class BaseAddEditMovieActivity extends BaseActivity {
+
     protected CrudService crudService;
     protected CustomSeriesAdapter customSeriesAdapter;
-    protected ArrayList<Series> seriesList = new ArrayList<>();
-    protected Spinner spinnerSp;
+    private ArrayList<Series> seriesItems = new ArrayList<>();
+    protected Spinner seriesItemsSp;
     protected Movie movie;
     protected EditText movieIdTxt;
     protected EditText movieNameTxt;
@@ -36,10 +34,26 @@ public class BaseAddEditMovieActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_edit_movie);
-        setupSeriesSp();
+        initViews();
+        setupCrudApiService();
+        fetchSeriesItems();
+        setupSeriesItemsSp();
     }
 
-    private void setupSeriesSp() {
+    private void setupSeriesItemsSp() {
+        customSeriesAdapter = new CustomSeriesAdapter(this, android.R.layout.simple_list_item_1, seriesItems);
+        seriesItemsSp.setAdapter(customSeriesAdapter);
+    }
+
+    protected void initViews() {
+        movieIdTxt = findViewById(R.id.movie_id_txt);
+        movieNameTxt = findViewById(R.id.movie_name_txt);
+        imageUrlTxt = findViewById(R.id.image_url_txt);
+        movieDescriptionTxt = findViewById(R.id.movie_description_txt);
+        seriesItemsSp = findViewById(R.id.series_items_sp);
+    }
+
+    private void setupCrudApiService() {
         CrudApi api = new CrudApi();
         crudService = api.createCrudService();
     }
@@ -50,14 +64,16 @@ public class BaseAddEditMovieActivity extends BaseActivity {
         return true;
     }
 
-    private void fetchSeries() {
-        CrudApi api = new CrudApi();
-        CrudService service = api.createCrudService();
-        Call<List<Series>> call = service.fetchSeries();
+    private void fetchSeriesItems() {
+        Call<List<Series>> call = crudService.fetchSeries();
         call.enqueue(new Callback<List<Series>>() {
             @Override
             public void onResponse(Call<List<Series>> call, Response<List<Series>> response) {
-
+            List<Series> seriesItems = response.body();
+            customSeriesAdapter.addAll(seriesItems);
+            if(movie != null) {
+                showData();
+            }
             }
 
             @Override
@@ -65,5 +81,18 @@ public class BaseAddEditMovieActivity extends BaseActivity {
 
             }
         });
+    }
+
+    protected void showData() {
+        movieIdTxt.setText(movie.movieId);
+        movieNameTxt.setText(movie.movieName);
+        imageUrlTxt.setText(movie.movieImageUrl);
+        movieDescriptionTxt.setText(movie.description);
+        for(int i = 0; i < customSeriesAdapter.getCount(); i++) {
+            Series series = customSeriesAdapter.getItem(i);
+            if(movie.seriesId.equals(series.seriesId)) {
+                seriesItemsSp.setSelection(i);
+            }
+        }
     }
 }

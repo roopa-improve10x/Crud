@@ -26,39 +26,31 @@ public class AddMovieActivity extends BaseAddEditMovieActivity{
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if(item.getItemId() == R.id.done) {
             String movieId = movieIdTxt.getText().toString();
-            Series series = (Series) spinnerSp.getSelectedItem();
+            Series series = (Series) seriesItemsSp.getSelectedItem();
             String seriesId = series.seriesId;
             String imageUrl = imageUrlTxt.getText().toString();
             String movieName = movieNameTxt.getText().toString();
             String description = movieDescriptionTxt.getText().toString();
-            addMovie(movieId, seriesId, imageUrl, movieName, description);
+            addMovie(movieId, seriesId, movieName, imageUrl, description);
             return true;
         } else {
             return super.onOptionsItemSelected(item);
         }
     }
 
-    private void addMovie(String movieId, String seriesId, String imageUrl, String title, String description) {
-        Movie movie = new Movie();
-        movie.movieId = movieId;
-        movie.seriesId = seriesId;
-        movie.movieImageUrl = imageUrl;
-        movie.movieName = title;
-        movie.description = description;
-
-        CrudApi crudApi = new CrudApi();
-        CrudService crudService = crudApi.createCrudService();
+    private void addMovie(String movieId, String seriesId, String title, String imageUrl, String description) {
+        Movie movie = new Movie(movieId, seriesId, title, imageUrl, description);
         Call<Movie> call = crudService.addMovie(movie);
         call.enqueue(new Callback<Movie>() {
             @Override
             public void onResponse(Call<Movie> call, Response<Movie> response) {
-                showToast("Successfully added data");
+                showToast("Successfully added movie");
                 finish();
             }
 
             @Override
             public void onFailure(Call<Movie> call, Throwable t) {
-            showToast("Failed to add data");
+            showToast("Failed to add movie");
             }
         });
     }
