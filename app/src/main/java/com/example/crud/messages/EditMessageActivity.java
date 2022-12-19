@@ -63,13 +63,13 @@ public class EditMessageActivity extends BaseAddEditMessageActivity{
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
-                showToast("Successfully updated the data");
+                showToast("Successfully updated the message");
                 finish();
             }
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
-                showToast("Failed to update the data");
+                showToast("Failed to update the message");
             }
         });
     }

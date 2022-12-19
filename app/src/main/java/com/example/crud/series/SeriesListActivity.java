@@ -60,13 +60,13 @@ public class SeriesListActivity extends BaseActivity {
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
-                showToast("Successfully deleted the data");
+                showToast("Successfully deleted the series");
                 fetchSeries();
             }
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
-                showToast("Failed to delete the data");
+                showToast("Failed to delete the series");
             }
         });
     }
@@ -81,14 +81,12 @@ public class SeriesListActivity extends BaseActivity {
             @Override
             public void onResponse(Call<List<Series>> call, Response<List<Series>> response) {
                 List<Series> series = response.body();
-                // rename series to seriesList1
-
                 seriesAdapter.setData(series);
             }
 
             @Override
             public void onFailure(Call<List<Series>> call, Throwable t) {
-                showToast("Failed to load the data");
+                showToast("Failed to load the series");
             }
         });
     }

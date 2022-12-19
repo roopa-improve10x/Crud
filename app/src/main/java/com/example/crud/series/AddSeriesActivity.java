@@ -46,13 +46,13 @@ public class AddSeriesActivity extends BaseAddEditSeriesActivity{
         call.enqueue(new Callback<Series>() {
             @Override
             public void onResponse(Call<Series> call, Response<Series> response) {
-                showToast("Successfully added the data");
+                showToast("Successfully added the series");
                 finish();
             }
 
             @Override
             public void onFailure(Call<Series> call, Throwable t) {
-                showToast("Failed to add the data");
+                showToast("Failed to add the series");
             }
         });
     }

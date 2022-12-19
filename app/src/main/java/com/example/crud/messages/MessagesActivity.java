@@ -114,7 +114,7 @@ public class MessagesActivity extends BaseActivity {
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
-                showToast("Failed to load the data");
+                showToast("Failed to load the message");
             }
         });
     }

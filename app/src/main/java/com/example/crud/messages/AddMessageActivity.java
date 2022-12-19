@@ -48,14 +48,13 @@ public class AddMessageActivity extends BaseAddEditMessageActivity{
         call.enqueue(new Callback<Messages>() {
             @Override
             public void onResponse(Call<Messages> call, Response<Messages> response) {
-                showToast("Successfully added the data");
-                //Todo: change data as message
+                showToast("Successfully added the message");
                 finish();
             }
 
             @Override
             public void onFailure(Call<Messages> call, Throwable t) {
-                showToast("Failed to add data");
+                showToast("Failed to add message");
             }
         });
     }

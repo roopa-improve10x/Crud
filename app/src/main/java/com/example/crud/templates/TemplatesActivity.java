@@ -54,13 +54,13 @@ public class TemplatesActivity extends BaseActivity {
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
-               showToast("Successfully deleted the data");
+               showToast("Successfully deleted the template");
                fetchTemplates();
             }
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
-                showToast("Failed to delete the data");
+                showToast("Failed to delete the template");
             }
         });
     }
@@ -85,7 +85,7 @@ public class TemplatesActivity extends BaseActivity {
 
             @Override
             public void onFailure(Call<List<Templates>> call, Throwable t) {
-                showToast("Failed to load the data");
+                showToast("Failed to load the template");
             }
         });
 

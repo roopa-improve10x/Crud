@@ -44,13 +44,13 @@ public class AddTemplateActivity extends BaseAddEditTemplateActivity{
         call.enqueue(new Callback<Templates>() {
             @Override
             public void onResponse(Call<Templates> call, Response<Templates> response) {
-                showToast("Successfully added the data");
+                showToast("Successfully added the template");
                 finish();
             }
 
             @Override
             public void onFailure(Call<Templates> call, Throwable t) {
-                showToast("Failed to add data");
+                showToast("Failed to add template");
             }
         });
 
