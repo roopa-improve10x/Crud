@@ -37,24 +37,24 @@ public class AddMessageActivity extends BaseAddEditMessageActivity{
     //Todo: create the separate method setupCrudApiService()
 
     private void addMessage(String name, String phoneNumber, String messageText) {
-        Messages messages = new Messages();
+        Message messages = new Message();
         messages.name = name;
         messages.mobileNo = phoneNumber;
         messages.message = messageText;
 
         CrudApi api = new CrudApi();
         CrudService service = api.createCrudService();
-        Call<Messages> call = service.addMessages(messages);
-        call.enqueue(new Callback<Messages>() {
+        Call<Message> call = service.addMessages(messages);
+        call.enqueue(new Callback<Message>() {
             @Override
-            public void onResponse(Call<Messages> call, Response<Messages> response) {
+            public void onResponse(Call<Message> call, Response<Message> response) {
                 showToast("Successfully added the data");
                 //Todo: change data as message
                 finish();
             }
 
             @Override
-            public void onFailure(Call<Messages> call, Throwable t) {
+            public void onFailure(Call<Message> call, Throwable t) {
                 showToast("Failed to add data");
             }
         });

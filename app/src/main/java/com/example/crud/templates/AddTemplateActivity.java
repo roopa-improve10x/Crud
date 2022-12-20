@@ -35,21 +35,21 @@ public class AddTemplateActivity extends BaseAddEditTemplateActivity{
     // Todo: create a method for apiService
 
     private void addTemplate(String messageText) {
-        Templates templates = new Templates();
+        Template templates = new Template();
         templates.messageText = messageText;
 
         CrudApi crudApi = new CrudApi();
         CrudService crudService = crudApi.createCrudService();
-        Call<Templates> call = crudService.addTemplate(templates);
-        call.enqueue(new Callback<Templates>() {
+        Call<Template> call = crudService.addTemplate(templates);
+        call.enqueue(new Callback<Template>() {
             @Override
-            public void onResponse(Call<Templates> call, Response<Templates> response) {
+            public void onResponse(Call<Template> call, Response<Template> response) {
                 showToast("Successfully added the data");
                 finish();
             }
 
             @Override
-            public void onFailure(Call<Templates> call, Throwable t) {
+            public void onFailure(Call<Template> call, Throwable t) {
                 showToast("Failed to add data");
             }
         });

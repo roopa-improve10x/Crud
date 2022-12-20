@@ -24,11 +24,9 @@ import retrofit2.Response;
 
 public class TemplatesActivity extends BaseActivity {
 
-    //Todo: rename to templateList
-
-    private ArrayList<Templates> templatesList = new ArrayList<>();
+    private ArrayList<Template> templateList = new ArrayList<>();
     private RecyclerView templatesRv;
-    private TemplateAdapter templateAdapter;
+    private TemplatesAdapter templateAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +37,7 @@ public class TemplatesActivity extends BaseActivity {
         log("onCreate");
     }
 
-    private void updateTemplates(Templates templates) {
+    private void updateTemplates(Template templates) {
         //Todo: rename to updateTemplate
 
         Intent intent = new Intent(this, EditTemplateActivity.class);
@@ -75,16 +73,16 @@ public class TemplatesActivity extends BaseActivity {
     private void fetchTemplates() {
         CrudApi crudApi = new CrudApi();
         CrudService crudService = crudApi.createCrudService();
-        Call<List<Templates>> call = crudService.fetchTemplates();
-        call.enqueue(new Callback<List<Templates>>() {
+        Call<List<Template>> call = crudService.fetchTemplates();
+        call.enqueue(new Callback<List<Template>>() {
             @Override
-            public void onResponse(Call<List<Templates>> call, Response<List<Templates>> response) {
-                List<Templates> templates = response.body();
+            public void onResponse(Call<List<Template>> call, Response<List<Template>> response) {
+                List<Template> templates = response.body();
                 templateAdapter.setData(templates);
             }
 
             @Override
-            public void onFailure(Call<List<Templates>> call, Throwable t) {
+            public void onFailure(Call<List<Template>> call, Throwable t) {
                 showToast("Failed to load the data");
             }
         });
@@ -113,12 +111,12 @@ public class TemplatesActivity extends BaseActivity {
 
         templatesRv = findViewById(R.id.templates_rv);
         templatesRv.setLayoutManager(new LinearLayoutManager(this));
-        templateAdapter = new TemplateAdapter();
-        templateAdapter.setData(templatesList);
+        templateAdapter = new TemplatesAdapter();
+        templateAdapter.setData(templateList);
         templatesRv.setAdapter(templateAdapter);
         templateAdapter.setOnItemActionListener(new OnItemActionListener() {
             @Override
-            public void onEdit(Templates templates) {
+            public void onEdit(Template templates) {
                 updateTemplates(templates);
             }
 

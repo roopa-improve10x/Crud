@@ -24,11 +24,11 @@ import retrofit2.Response;
 
 public class SeriesListActivity extends BaseActivity {
 
-    private ArrayList<Series> seriesList = new ArrayList<>();
+    private ArrayList<SeriesItem> seriesList = new ArrayList<>();
     private RecyclerView seriesRv;
     //Todo: rename to seriesListRv
 
-    private SeriesAdapter seriesAdapter;
+    private SeriesListAdapter seriesAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +46,7 @@ public class SeriesListActivity extends BaseActivity {
         fetchSeries();
     }
 
-    private void updateSeries(Series series) {
+    private void updateSeries(SeriesItem series) {
         //Todo: rename the method as updateSeriesItem
         Intent intent = new Intent(this, EditSeriesActivity.class);
         intent.putExtra(Constants.KEY_SERIES, series);
@@ -76,18 +76,18 @@ public class SeriesListActivity extends BaseActivity {
 
         CrudApi crudApi = new CrudApi();
         CrudService crudService = crudApi.createCrudService();
-        Call<List<Series>> call = crudService.fetchSeries();
-        call.enqueue(new Callback<List<Series>>() {
+        Call<List<SeriesItem>> call = crudService.fetchSeries();
+        call.enqueue(new Callback<List<SeriesItem>>() {
             @Override
-            public void onResponse(Call<List<Series>> call, Response<List<Series>> response) {
-                List<Series> series = response.body();
+            public void onResponse(Call<List<SeriesItem>> call, Response<List<SeriesItem>> response) {
+                List<SeriesItem> series = response.body();
                 // rename series to seriesList1
 
                 seriesAdapter.setData(series);
             }
 
             @Override
-            public void onFailure(Call<List<Series>> call, Throwable t) {
+            public void onFailure(Call<List<SeriesItem>> call, Throwable t) {
                 showToast("Failed to load the data");
             }
         });
@@ -115,12 +115,12 @@ public class SeriesListActivity extends BaseActivity {
 
         seriesRv = findViewById(R.id.series_rv);
         seriesRv.setLayoutManager(new LinearLayoutManager(this));
-        seriesAdapter = new SeriesAdapter();
+        seriesAdapter = new SeriesListAdapter();
         seriesAdapter.setData(seriesList);
         seriesRv.setAdapter(seriesAdapter);
         seriesAdapter.setOnItemActionListener(new OnItemActionListener() {
             @Override
-            public void onEdit(Series series) {
+            public void onEdit(SeriesItem series) {
                 updateSeries(series);
             }
 

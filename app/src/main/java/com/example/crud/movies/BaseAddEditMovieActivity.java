@@ -9,7 +9,7 @@ import com.example.crud.R;
 import com.example.crud.api.CrudApi;
 import com.example.crud.api.CrudService;
 import com.example.crud.base.BaseActivity;
-import com.example.crud.series.Series;
+import com.example.crud.series.SeriesItem;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +22,7 @@ public class BaseAddEditMovieActivity extends BaseActivity {
 
     protected CrudService crudService;
     protected CustomSeriesAdapter customSeriesAdapter;
-    private ArrayList<Series> seriesItems = new ArrayList<>();
+    private ArrayList<SeriesItem> seriesItems = new ArrayList<>();
     protected Spinner seriesItemsSp;
     protected Movie movie;
     protected EditText movieIdTxt;
@@ -65,11 +65,11 @@ public class BaseAddEditMovieActivity extends BaseActivity {
     }
 
     private void fetchSeriesItems() {
-        Call<List<Series>> call = crudService.fetchSeries();
-        call.enqueue(new Callback<List<Series>>() {
+        Call<List<SeriesItem>> call = crudService.fetchSeries();
+        call.enqueue(new Callback<List<SeriesItem>>() {
             @Override
-            public void onResponse(Call<List<Series>> call, Response<List<Series>> response) {
-            List<Series> seriesItems = response.body();
+            public void onResponse(Call<List<SeriesItem>> call, Response<List<SeriesItem>> response) {
+            List<SeriesItem> seriesItems = response.body();
             customSeriesAdapter.addAll(seriesItems);
             if(movie != null) {
                 showData();
@@ -77,7 +77,7 @@ public class BaseAddEditMovieActivity extends BaseActivity {
             }
 
             @Override
-            public void onFailure(Call<List<Series>> call, Throwable t) {
+            public void onFailure(Call<List<SeriesItem>> call, Throwable t) {
 
             }
         });
@@ -89,7 +89,7 @@ public class BaseAddEditMovieActivity extends BaseActivity {
         imageUrlTxt.setText(movie.movieImageUrl);
         movieDescriptionTxt.setText(movie.description);
         for(int i = 0; i < customSeriesAdapter.getCount(); i++) {
-            Series series = customSeriesAdapter.getItem(i);
+            SeriesItem series = customSeriesAdapter.getItem(i);
             if(movie.seriesId.equals(series.seriesId)) {
                 seriesItemsSp.setSelection(i);
             }

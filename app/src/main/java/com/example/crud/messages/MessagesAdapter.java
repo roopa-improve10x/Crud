@@ -11,14 +11,13 @@ import com.example.crud.R;
 
 import java.util.List;
 
-public class MessageAdapter extends RecyclerView.Adapter<MessageViewHolder> {
-    //Todo: change the class name as MessagesAdapter
+public class MessagesAdapter extends RecyclerView.Adapter<MessageViewHolder> {
 
-    private List<Messages> messagesList;
+    private List<Message> messagesList;
 
     private OnItemActionListener onItemActionListener;
 
-    public void setData(List<Messages> messagesList){
+    public void setData(List<Message> messagesList){
         this.messagesList = messagesList;
         notifyDataSetChanged();
     }
@@ -38,7 +37,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull MessageViewHolder holder, int position) {
-        Messages messages = messagesList.get(position);
+        Message messages = messagesList.get(position);
         holder.nameTxt.setText(messages.name);
         holder.mobileNoTxt.setText(messages.mobileNo);
         holder.messageTxt.setText(messages.message);
