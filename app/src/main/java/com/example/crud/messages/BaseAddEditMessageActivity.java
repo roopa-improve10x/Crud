@@ -1,27 +1,17 @@
 package com.example.crud.messages;
 
-import androidx.annotation.NonNull;
-
 import android.os.Bundle;
 import android.view.Menu;
-import android.view.MenuItem;
 import android.widget.EditText;
 
-import com.example.crud.Constants;
 import com.example.crud.R;
-import com.example.crud.api.CrudApi;
-import com.example.crud.api.CrudService;
 import com.example.crud.base.BaseActivity;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class BaseAddEditMessageActivity extends BaseActivity {
 
-    protected EditText addNameTxt;
+    protected EditText nameTxt;
     protected EditText phoneNumberTxt;
-    protected EditText addMessageTxt;
+    protected EditText messageTxt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,9 +21,9 @@ public class BaseAddEditMessageActivity extends BaseActivity {
     }
 
     private void findIds() {
-        addNameTxt = findViewById(R.id.add_name_txt);
+        nameTxt = findViewById(R.id.add_name_txt);
         phoneNumberTxt = findViewById(R.id.phone_number_txt);
-        addMessageTxt = findViewById(R.id.add_message_txt);
+        messageTxt = findViewById(R.id.add_message_txt);
     }
 
     @Override

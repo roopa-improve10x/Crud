@@ -29,10 +29,8 @@ public class EditMessageActivity extends BaseAddEditMessageActivity{
     }
 
     private void showData(){
-        //Todo: rename nameTxt
-        addNameTxt.setText(messages.name);
-        addMessageTxt.setText(messages.message);
-        //Todo: rename messageTxt
+        nameTxt.setText(messages.name);
+        messageTxt.setText(messages.message);
         phoneNumberTxt.setText(messages.mobileNo);
     }
 
@@ -40,9 +38,9 @@ public class EditMessageActivity extends BaseAddEditMessageActivity{
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == R.id.add){
             // Todo: change the add as save
-            String name = addNameTxt.getText().toString();
+            String name = nameTxt.getText().toString();
             String number = phoneNumberTxt.getText().toString();
-            String message = addMessageTxt.getText().toString();
+            String message = messageTxt.getText().toString();
             updateMessage(messages.id, name, number, message);
             return true;
         } else{
