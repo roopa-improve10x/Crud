@@ -16,14 +16,14 @@ import retrofit2.Response;
 
 public class EditTemplateActivity extends BaseAddEditTemplateActivity{
 
-    private Templates templates;
+    private Template templates;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getSupportActionBar().setTitle("Edit Template");
         if(getIntent().hasExtra(Constants.KEY_TEMPLATE)) {
-            templates = (Templates) getIntent().getSerializableExtra(Constants.KEY_TEMPLATE);
+            templates = (Template) getIntent().getSerializableExtra(Constants.KEY_TEMPLATE);
             showData();
         }
     }
@@ -47,7 +47,7 @@ public class EditTemplateActivity extends BaseAddEditTemplateActivity{
 
         //Todo: rename to updateTemplate()
 
-        templates = new Templates();
+        templates = new Template();
         templates.messageText = messageText;
 
         CrudApi crudApi = new CrudApi();

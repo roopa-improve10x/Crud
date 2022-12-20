@@ -16,14 +16,14 @@ import retrofit2.Response;
 
 public class EditMessageActivity extends BaseAddEditMessageActivity{
 
-    private Messages messages;
+    private Message messages;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getIntent().hasExtra(Constants.KEY_MESSAGE)) {
             getSupportActionBar().setTitle("Edit Message");
-            messages = (Messages) getIntent().getSerializableExtra(Constants.KEY_MESSAGE);
+            messages = (Message) getIntent().getSerializableExtra(Constants.KEY_MESSAGE);
             showData();
         }
     }
@@ -49,7 +49,7 @@ public class EditMessageActivity extends BaseAddEditMessageActivity{
     }
 
     private void updateMessage(String id, String name, String phoneNumber, String messageText) {
-        Messages messages = new Messages();
+        Message messages = new Message();
         messages.name = name;
         messages.id= id;
         messages.mobileNo = phoneNumber;

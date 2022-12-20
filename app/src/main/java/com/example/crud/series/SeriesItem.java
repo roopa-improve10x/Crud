@@ -4,8 +4,8 @@ import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
 
-public class Series implements Serializable {
-    //Todo: change class name to seriesItem
+public class SeriesItem implements Serializable {
+
     @SerializedName("_id")
     public String id;
     public String imageUrl;

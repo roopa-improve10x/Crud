@@ -24,9 +24,9 @@ import retrofit2.Response;
 
 public class MessagesActivity extends BaseActivity {
 
-    private ArrayList<Messages> messages = new ArrayList<>();
+    private ArrayList<Message> messages = new ArrayList<>();
     private RecyclerView messagesRv;
-    private MessageAdapter messageAdapter;
+    private MessagesAdapter messageAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,17 +48,17 @@ public class MessagesActivity extends BaseActivity {
         log("fetchMessages API started");
         CrudApi api = new CrudApi();
         CrudService service = api.createCrudService();
-        Call<List<Messages>> call = service.fetchMessages();
-        call.enqueue(new Callback<List<Messages>>() {
+        Call<List<Message>> call = service.fetchMessages();
+        call.enqueue(new Callback<List<Message>>() {
             @Override
-            public void onResponse(Call<List<Messages>> call, Response<List<Messages>> response) {
+            public void onResponse(Call<List<Message>> call, Response<List<Message>> response) {
                 log("fetchMessages called");
-                List<Messages> messages = response.body();
+                List<Message> messages = response.body();
                 messageAdapter.setData(messages);
             }
 
             @Override
-            public void onFailure(Call<List<Messages>> call, Throwable t) {
+            public void onFailure(Call<List<Message>> call, Throwable t) {
                 showToast("Failed to load the data");
             }
         });
@@ -85,11 +85,11 @@ public class MessagesActivity extends BaseActivity {
         //Todo: change to setupMessageItemsRv()
         messagesRv = findViewById(R.id.messages_rv);
         messagesRv.setLayoutManager(new LinearLayoutManager(this));
-        messageAdapter = new MessageAdapter();
+        messageAdapter = new MessagesAdapter();
         messageAdapter.setData(messages);
         messageAdapter.setOnItemActionListener(new OnItemActionListener() {
             @Override
-            public void onEdit(Messages messages) {
+            public void onEdit(Message messages) {
                 updateMessages(messages);
             }
 
@@ -119,7 +119,7 @@ public class MessagesActivity extends BaseActivity {
         });
     }
 
-    private void updateMessages(Messages messages) {
+    private void updateMessages(Message messages) {
         //Todo: change the method name as updatemessage
         Intent intent = new Intent(this, EditMessageActivity.class);
         intent.putExtra(Constants.KEY_MESSAGE, messages);

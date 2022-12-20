@@ -7,9 +7,7 @@ import androidx.annotation.NonNull;
 
 import com.example.crud.Constants;
 import com.example.crud.R;
-import com.example.crud.api.CrudApi;
-import com.example.crud.api.CrudService;
-import com.example.crud.series.Series;
+import com.example.crud.series.SeriesItem;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -33,7 +31,7 @@ public class EditMovieActivity extends BaseAddEditMovieActivity{
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if(item.getItemId() == R.id.done) {
             String movieId = movieIdTxt.getText().toString();
-            Series series = (Series) seriesItemsSp.getSelectedItem();
+            SeriesItem series = (SeriesItem) seriesItemsSp.getSelectedItem();
             String seriesId = series.seriesId;
             String imageUrl = imageUrlTxt.getText().toString();
             String movieName = movieNameTxt.getText().toString();

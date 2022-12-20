@@ -11,14 +11,13 @@ import com.example.crud.R;
 
 import java.util.List;
 
-public class TemplateAdapter extends RecyclerView.Adapter<TemplateViewHolder> {
-    //Todo: rename class name templatesAdapter
+public class TemplatesAdapter extends RecyclerView.Adapter<TemplateViewHolder> {
 
-    private List<Templates> templateList;
+    private List<Template> templateList;
 
     private OnItemActionListener onItemActionListener;
 
-    public void setData(List<Templates> templateList){
+    public void setData(List<Template> templateList){
         this.templateList = templateList;
         notifyDataSetChanged();
     }
@@ -37,7 +36,7 @@ public class TemplateAdapter extends RecyclerView.Adapter<TemplateViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull TemplateViewHolder holder, int position) {
-        Templates templates = templateList.get(position);
+        Template templates = templateList.get(position);
         holder.templateTxt.setText(templates.messageText);
         holder.templateCancelBtn.setOnClickListener(view -> {
             onItemActionListener.onDelete(templates.id);

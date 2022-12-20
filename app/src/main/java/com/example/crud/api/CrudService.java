@@ -1,10 +1,10 @@
 package com.example.crud.api;
 
 import com.example.crud.Constants;
-import com.example.crud.messages.Messages;
+import com.example.crud.messages.Message;
 import com.example.crud.movies.Movie;
-import com.example.crud.series.Series;
-import com.example.crud.templates.Templates;
+import com.example.crud.series.SeriesItem;
+import com.example.crud.templates.Template;
 
 import java.util.List;
 
@@ -19,43 +19,43 @@ import retrofit2.http.Path;
 public interface CrudService {
 
     @GET(Constants.MESSAGE_END_POINT)
-    Call<List<Messages>> fetchMessages();
+    Call<List<Message>> fetchMessages();
 
     //Todo : change all the method names into singular words.
 
     @POST(Constants.MESSAGE_END_POINT)
-    Call<Messages> addMessages(@Body Messages messages);
+    Call<Message> addMessages(@Body Message messages);
 
     @DELETE(Constants.MESSAGE_END_POINT + "/{id}")
     Call<Void> deleteMessages(@Path("id") String id);
 
     @PUT(Constants.MESSAGE_END_POINT + "/{id}")
-    Call<Void> updateMessages(@Path("id") String id, @Body Messages messages);
+    Call<Void> updateMessages(@Path("id") String id, @Body Message messages);
 
     @GET(Constants.TEMPLATES_END_POINT)
-    Call<List<Templates>> fetchTemplates();
+    Call<List<Template>> fetchTemplates();
 
     @POST(Constants.TEMPLATES_END_POINT)
-    Call<Templates> addTemplate(@Body Templates templates);
+    Call<Template> addTemplate(@Body Template templates);
 
     @DELETE(Constants.TEMPLATES_END_POINT + "/{id}")
     Call<Void> deleteTemplate(@Path("id") String id);
 
     @PUT(Constants.TEMPLATES_END_POINT + "/{id}")
-    Call<Void> updateTemplates(@Path("id") String id, @Body Templates templates);
+    Call<Void> updateTemplates(@Path("id") String id, @Body Template templates);
 
     @GET(Constants.SERIES_END_POINT)
-    Call<List<Series>> fetchSeries();
+    Call<List<SeriesItem>> fetchSeries();
     //rename to seriesList
 
     @POST(Constants.SERIES_END_POINT)
-    Call<Series> addSeries(@Body Series series);
+    Call<SeriesItem> addSeries(@Body SeriesItem series);
 
     @DELETE(Constants.SERIES_END_POINT + "{/id}")
     Call<Void> deleteSeries(@Path("id") String id);
 
     @PUT(Constants.SERIES_END_POINT + "{/id}")
-    Call<Void> updateSeries(@Path("id") String id, @Body Series series);
+    Call<Void> updateSeries(@Path("id") String id, @Body SeriesItem series);
 
     @GET(Constants.MOVIES_END_POINT)
     Call<List<Movie>> fetchMovies();
