@@ -14,15 +14,12 @@ import java.util.List;
 public class TemplateAdapter extends RecyclerView.Adapter<TemplateViewHolder> {
     //Todo: rename class name templatesAdapter
 
-    private List<Templates> templatesList;
-    //Todo: rename to templateList
+    private List<Templates> templateList;
 
     private OnItemActionListener onItemActionListener;
 
-    public void setData(List<Templates> templatesArrayList){
-        //Todo: rename to templateList
-        //Todo: use this keyword
-        templatesList = templatesArrayList;
+    public void setData(List<Templates> templateList){
+        this.templateList = templateList;
         notifyDataSetChanged();
     }
 
@@ -40,7 +37,7 @@ public class TemplateAdapter extends RecyclerView.Adapter<TemplateViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull TemplateViewHolder holder, int position) {
-        Templates templates = templatesList.get(position);
+        Templates templates = templateList.get(position);
         holder.templateTxt.setText(templates.messageText);
         holder.templateCancelBtn.setOnClickListener(view -> {
             onItemActionListener.onDelete(templates.id);
@@ -52,6 +49,6 @@ public class TemplateAdapter extends RecyclerView.Adapter<TemplateViewHolder> {
 
     @Override
     public int getItemCount() {
-        return templatesList.size();
+        return templateList.size();
     }
 }

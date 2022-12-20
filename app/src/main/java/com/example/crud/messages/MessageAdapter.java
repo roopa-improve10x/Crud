@@ -15,14 +15,11 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageViewHolder> {
     //Todo: change the class name as MessagesAdapter
 
     private List<Messages> messagesList;
-    //Todo: change the messagesList as MessageList
 
     private OnItemActionListener onItemActionListener;
 
-    public void setData(List<Messages> messagesArrayList){
-        // Todo: rename as messageList
-        //Todo: use this keyword
-        messagesList = messagesArrayList;
+    public void setData(List<Messages> messagesList){
+        this.messagesList = messagesList;
         notifyDataSetChanged();
     }
 
