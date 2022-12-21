@@ -89,7 +89,7 @@ public class MessagesActivity extends BaseActivity {
         messagesAdapter.setOnItemActionListener(new OnItemActionListener() {
             @Override
             public void onEdit(Messages messages) {
-                updateMessages(messages);
+                updateMessage(messages);
             }
 
             @Override
@@ -103,7 +103,7 @@ public class MessagesActivity extends BaseActivity {
     private void deleteMessage(String id) {
         CrudApi api = new CrudApi();
         CrudService service = api.createCrudService();
-        Call<Void> call = service.deleteMessages(id);
+        Call<Void> call = service.deleteMessage(id);
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
@@ -118,8 +118,7 @@ public class MessagesActivity extends BaseActivity {
         });
     }
 
-    private void updateMessages(Messages messages) {
-        //Todo: change the method name as updatemessage
+    private void updateMessage(Messages messages) {
         Intent intent = new Intent(this, EditMessageActivity.class);
         intent.putExtra(Constants.KEY_MESSAGE, messages);
         startActivity(intent);
