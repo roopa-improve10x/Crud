@@ -52,7 +52,7 @@ public class EditTemplateActivity extends BaseAddEditTemplateActivity{
 
         CrudApi crudApi = new CrudApi();
         CrudService crudService = crudApi.createCrudService();
-        Call<Void> call = crudService.updateTemplates(id, templates);
+        Call<Void> call = crudService.updateTemplate(id, templates);
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {

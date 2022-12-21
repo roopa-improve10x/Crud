@@ -26,7 +26,7 @@ public class MessagesActivity extends BaseActivity {
 
     private ArrayList<Messages> messages = new ArrayList<>();
     private RecyclerView messagesRv;
-    private MessageAdapter messageAdapter;
+    private MessagesAdapter messagesAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +54,7 @@ public class MessagesActivity extends BaseActivity {
             public void onResponse(Call<List<Messages>> call, Response<List<Messages>> response) {
                 log("fetchMessages called");
                 List<Messages> messages = response.body();
-                messageAdapter.setData(messages);
+                messagesAdapter.setData(messages);
             }
 
             @Override
@@ -84,12 +84,12 @@ public class MessagesActivity extends BaseActivity {
     private void setupMessageItemsRv() {
         messagesRv = findViewById(R.id.messages_rv);
         messagesRv.setLayoutManager(new LinearLayoutManager(this));
-        messageAdapter = new MessageAdapter();
-        messageAdapter.setData(messages);
-        messageAdapter.setOnItemActionListener(new OnItemActionListener() {
+        messagesAdapter = new MessagesAdapter();
+        messagesAdapter.setData(messages);
+        messagesAdapter.setOnItemActionListener(new OnItemActionListener() {
             @Override
             public void onEdit(Messages messages) {
-                updateMessages(messages);
+                updateMessage(messages);
             }
 
             @Override
@@ -97,13 +97,13 @@ public class MessagesActivity extends BaseActivity {
                deleteMessage(id);
             }
         });
-        messagesRv.setAdapter(messageAdapter);
+        messagesRv.setAdapter(messagesAdapter);
     }
 
     private void deleteMessage(String id) {
         CrudApi api = new CrudApi();
         CrudService service = api.createCrudService();
-        Call<Void> call = service.deleteMessages(id);
+        Call<Void> call = service.deleteMessage(id);
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
@@ -118,8 +118,7 @@ public class MessagesActivity extends BaseActivity {
         });
     }
 
-    private void updateMessages(Messages messages) {
-        //Todo: change the method name as updatemessage
+    private void updateMessage(Messages messages) {
         Intent intent = new Intent(this, EditMessageActivity.class);
         intent.putExtra(Constants.KEY_MESSAGE, messages);
         startActivity(intent);

@@ -26,7 +26,7 @@ public class TemplatesActivity extends BaseActivity {
 
     private ArrayList<Templates> templateList = new ArrayList<>();
     private RecyclerView templatesRv;
-    private TemplateAdapter templateAdapter;
+    private TemplatesAdapter templatesAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,7 +78,7 @@ public class TemplatesActivity extends BaseActivity {
             @Override
             public void onResponse(Call<List<Templates>> call, Response<List<Templates>> response) {
                 List<Templates> templates = response.body();
-                templateAdapter.setData(templates);
+                templatesAdapter.setData(templates);
             }
 
             @Override
@@ -109,10 +109,10 @@ public class TemplatesActivity extends BaseActivity {
     private void setupTemplatesRv() {
         templatesRv = findViewById(R.id.templates_rv);
         templatesRv.setLayoutManager(new LinearLayoutManager(this));
-        templateAdapter = new TemplateAdapter();
-        templateAdapter.setData(templateList);
-        templatesRv.setAdapter(templateAdapter);
-        templateAdapter.setOnItemActionListener(new OnItemActionListener() {
+        templatesAdapter = new TemplatesAdapter();
+        templatesAdapter.setData(templateList);
+        templatesRv.setAdapter(templatesAdapter);
+        templatesAdapter.setOnItemActionListener(new OnItemActionListener() {
             @Override
             public void onEdit(Templates templates) {
                 updateTemplates(templates);

@@ -42,7 +42,7 @@ public class AddSeriesActivity extends BaseAddEditSeriesActivity{
 
         CrudApi crudApi = new CrudApi();
         CrudService crudService = crudApi.createCrudService();
-        Call<Series> call = crudService.addSeries(series);
+        Call<Series> call = crudService.addSeriesItem(series);
         call.enqueue(new Callback<Series>() {
             @Override
             public void onResponse(Call<Series> call, Response<Series> response) {

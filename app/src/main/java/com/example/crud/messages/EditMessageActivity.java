@@ -57,7 +57,7 @@ public class EditMessageActivity extends BaseAddEditMessageActivity{
 
         CrudApi api = new CrudApi();
         CrudService service = api.createCrudService();
-        Call<Void> call = service.updateMessages(id, messages);
+        Call<Void> call = service.updateMessage(id, messages);
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
