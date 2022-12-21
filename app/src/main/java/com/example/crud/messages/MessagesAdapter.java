@@ -11,8 +11,7 @@ import com.example.crud.R;
 
 import java.util.List;
 
-public class MessageAdapter extends RecyclerView.Adapter<MessageViewHolder> {
-    //Todo: change the class name as MessagesAdapter
+public class MessagesAdapter extends RecyclerView.Adapter<MessageViewHolder> {
 
     private List<Messages> messagesList;
 

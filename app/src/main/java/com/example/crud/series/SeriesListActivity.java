@@ -26,7 +26,7 @@ public class SeriesListActivity extends BaseActivity {
 
     private ArrayList<Series> seriesList = new ArrayList<>();
     private RecyclerView seriesListRv;
-    private SeriesAdapter seriesAdapter;
+    private SeriesListAdapter seriesListAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,7 +81,7 @@ public class SeriesListActivity extends BaseActivity {
                 List<Series> series = response.body();
                 // rename series to seriesList1
 
-                seriesAdapter.setData(series);
+                seriesListAdapter.setData(series);
             }
 
             @Override
@@ -111,10 +111,10 @@ public class SeriesListActivity extends BaseActivity {
     private void setupSeriesListRv() {
         seriesListRv = findViewById(R.id.series_rv);
         seriesListRv.setLayoutManager(new LinearLayoutManager(this));
-        seriesAdapter = new SeriesAdapter();
-        seriesAdapter.setData(seriesList);
-        seriesListRv.setAdapter(seriesAdapter);
-        seriesAdapter.setOnItemActionListener(new OnItemActionListener() {
+        seriesListAdapter = new SeriesListAdapter();
+        seriesListAdapter.setData(seriesList);
+        seriesListRv.setAdapter(seriesListAdapter);
+        seriesListAdapter.setOnItemActionListener(new OnItemActionListener() {
             @Override
             public void onEdit(Series series) {
                 updateSeries(series);
