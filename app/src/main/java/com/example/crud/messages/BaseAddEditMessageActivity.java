@@ -5,6 +5,8 @@ import android.view.Menu;
 import android.widget.EditText;
 
 import com.example.crud.R;
+import com.example.crud.api.CrudApi;
+import com.example.crud.api.CrudService;
 import com.example.crud.base.BaseActivity;
 
 public class BaseAddEditMessageActivity extends BaseActivity {
@@ -13,12 +15,14 @@ public class BaseAddEditMessageActivity extends BaseActivity {
     protected EditText phoneNumberTxt;
     protected EditText messageTxt;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_edit_message);
         findIds();
     }
+
 
     private void findIds() {
         nameTxt = findViewById(R.id.add_name_txt);

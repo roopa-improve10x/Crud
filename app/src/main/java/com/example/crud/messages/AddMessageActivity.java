@@ -13,7 +13,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class AddMessageActivity extends BaseAddEditMessageActivity{
+public class AddMessageActivity extends BaseAddEditMessageActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,18 +23,16 @@ public class AddMessageActivity extends BaseAddEditMessageActivity{
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if (item.getItemId() == R.id.add){
+        if (item.getItemId() == R.id.add) {
             String name = nameTxt.getText().toString();
             String number = phoneNumberTxt.getText().toString();
             String message = messageTxt.getText().toString();
             addMessage(name, number, message);
             return true;
-        } else{
+        } else {
             return super.onOptionsItemSelected(item);
         }
     }
-
-    //Todo: create the separate method setupCrudApiService()
 
     private void addMessage(String name, String phoneNumber, String messageText) {
         Messages messages = new Messages();
@@ -43,8 +41,8 @@ public class AddMessageActivity extends BaseAddEditMessageActivity{
         messages.message = messageText;
 
         CrudApi api = new CrudApi();
-        CrudService service = api.createCrudService();
-        Call<Messages> call = service.addMessage(messages);
+        CrudService crudService = api.createCrudService();
+        Call<Messages> call = crudService.addMessage(messages);
         call.enqueue(new Callback<Messages>() {
             @Override
             public void onResponse(Call<Messages> call, Response<Messages> response) {
