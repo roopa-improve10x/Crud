@@ -34,7 +34,7 @@ public class MessagesActivity extends BaseActivity {
         setContentView(R.layout.activity_messages);
         log("onCreate method started");
         getSupportActionBar().setTitle("Messages");
-        setUpMessagesRv();
+        setupMessageItemsRv();
     }
 
     @Override
@@ -81,8 +81,7 @@ public class MessagesActivity extends BaseActivity {
         }
     }
 
-    private void setUpMessagesRv() {
-        //Todo: change to setupMessageItemsRv()
+    private void setupMessageItemsRv() {
         messagesRv = findViewById(R.id.messages_rv);
         messagesRv.setLayoutManager(new LinearLayoutManager(this));
         messageAdapter = new MessageAdapter();

@@ -25,9 +25,7 @@ import retrofit2.Response;
 public class SeriesListActivity extends BaseActivity {
 
     private ArrayList<Series> seriesList = new ArrayList<>();
-    private RecyclerView seriesRv;
-    //Todo: rename to seriesListRv
-
+    private RecyclerView seriesListRv;
     private SeriesAdapter seriesAdapter;
 
     @Override
@@ -35,7 +33,7 @@ public class SeriesListActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_series_list);
         getSupportActionBar().setTitle("Series");
-        setUpSeriesRv();
+        setupSeriesListRv();
         log("onCreate");
     }
 
@@ -110,14 +108,12 @@ public class SeriesListActivity extends BaseActivity {
         }
     }
 
-    private void setUpSeriesRv() {
-        // Todo: rename to setupSeriesListRv()
-
-        seriesRv = findViewById(R.id.series_rv);
-        seriesRv.setLayoutManager(new LinearLayoutManager(this));
+    private void setupSeriesListRv() {
+        seriesListRv = findViewById(R.id.series_rv);
+        seriesListRv.setLayoutManager(new LinearLayoutManager(this));
         seriesAdapter = new SeriesAdapter();
         seriesAdapter.setData(seriesList);
-        seriesRv.setAdapter(seriesAdapter);
+        seriesListRv.setAdapter(seriesAdapter);
         seriesAdapter.setOnItemActionListener(new OnItemActionListener() {
             @Override
             public void onEdit(Series series) {
