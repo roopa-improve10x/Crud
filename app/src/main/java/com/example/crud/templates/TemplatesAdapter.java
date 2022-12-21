@@ -11,8 +11,7 @@ import com.example.crud.R;
 
 import java.util.List;
 
-public class TemplateAdapter extends RecyclerView.Adapter<TemplateViewHolder> {
-    //Todo: rename class name templatesAdapter
+public class TemplatesAdapter extends RecyclerView.Adapter<TemplateViewHolder> {
 
     private List<Templates> templateList;
 
