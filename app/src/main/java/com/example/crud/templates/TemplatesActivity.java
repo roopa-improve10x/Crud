@@ -37,9 +37,7 @@ public class TemplatesActivity extends BaseActivity {
         log("onCreate");
     }
 
-    private void updateTemplates(Templates templates) {
-        //Todo: rename to updateTemplate
-
+    private void updateTemplate(Templates templates) {
         Intent intent = new Intent(this, EditTemplateActivity.class);
         intent.putExtra(Constants.KEY_TEMPLATE, templates);
         startActivity(intent);
@@ -115,7 +113,7 @@ public class TemplatesActivity extends BaseActivity {
         templatesAdapter.setOnItemActionListener(new OnItemActionListener() {
             @Override
             public void onEdit(Templates templates) {
-                updateTemplates(templates);
+                updateTemplate(templates);
             }
 
             @Override

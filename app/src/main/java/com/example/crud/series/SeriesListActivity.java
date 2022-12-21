@@ -41,7 +41,7 @@ public class SeriesListActivity extends BaseActivity {
     protected void onResume() {
         log("onResume");
         super.onResume();
-        fetchSeries();
+        fetchSeriesList();
     }
 
     private void updateSeries(Series series) {
@@ -59,7 +59,7 @@ public class SeriesListActivity extends BaseActivity {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
                 showToast("Successfully deleted the data");
-                fetchSeries();
+                fetchSeriesList();
             }
 
             @Override
@@ -69,9 +69,7 @@ public class SeriesListActivity extends BaseActivity {
         });
     }
 
-    private void fetchSeries() {
-        //Todo: rename to fetchSeriesList()
-
+    private void fetchSeriesList() {
         CrudApi crudApi = new CrudApi();
         CrudService crudService = crudApi.createCrudService();
         Call<List<Series>> call = crudService.fetchSeries();
