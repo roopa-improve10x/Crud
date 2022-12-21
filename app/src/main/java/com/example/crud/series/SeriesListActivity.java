@@ -26,7 +26,7 @@ public class SeriesListActivity extends BaseActivity {
 
     private ArrayList<Series> seriesList = new ArrayList<>();
     private RecyclerView seriesListRv;
-    private SeriesAdapter seriesAdapter;
+    private SeriesListAdapter seriesListAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +41,7 @@ public class SeriesListActivity extends BaseActivity {
     protected void onResume() {
         log("onResume");
         super.onResume();
-        fetchSeries();
+        fetchSeriesList();
     }
 
     private void updateSeries(Series series) {
@@ -54,12 +54,12 @@ public class SeriesListActivity extends BaseActivity {
     private void deleteSeries(String id) {
         CrudApi crudApi = new CrudApi();
         CrudService crudService = crudApi.createCrudService();
-        Call<Void> call = crudService.deleteSeries(id);
+        Call<Void> call = crudService.deleteSeriesItem(id);
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
                 showToast("Successfully deleted the data");
-                fetchSeries();
+                fetchSeriesList();
             }
 
             @Override
@@ -69,9 +69,7 @@ public class SeriesListActivity extends BaseActivity {
         });
     }
 
-    private void fetchSeries() {
-        //Todo: rename to fetchSeriesList()
-
+    private void fetchSeriesList() {
         CrudApi crudApi = new CrudApi();
         CrudService crudService = crudApi.createCrudService();
         Call<List<Series>> call = crudService.fetchSeries();
@@ -81,7 +79,7 @@ public class SeriesListActivity extends BaseActivity {
                 List<Series> series = response.body();
                 // rename series to seriesList1
 
-                seriesAdapter.setData(series);
+                seriesListAdapter.setData(series);
             }
 
             @Override
@@ -111,10 +109,10 @@ public class SeriesListActivity extends BaseActivity {
     private void setupSeriesListRv() {
         seriesListRv = findViewById(R.id.series_rv);
         seriesListRv.setLayoutManager(new LinearLayoutManager(this));
-        seriesAdapter = new SeriesAdapter();
-        seriesAdapter.setData(seriesList);
-        seriesListRv.setAdapter(seriesAdapter);
-        seriesAdapter.setOnItemActionListener(new OnItemActionListener() {
+        seriesListAdapter = new SeriesListAdapter();
+        seriesListAdapter.setData(seriesList);
+        seriesListRv.setAdapter(seriesListAdapter);
+        seriesListAdapter.setOnItemActionListener(new OnItemActionListener() {
             @Override
             public void onEdit(Series series) {
                 updateSeries(series);
