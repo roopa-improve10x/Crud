@@ -89,7 +89,7 @@ public class MessagesActivity extends BaseActivity {
         messageAdapter.setOnItemActionListener(new OnItemActionListener() {
             @Override
             public void onEdit(Messages messages) {
-                updateMessages(messages);
+                updateMessage(messages);
             }
 
             @Override
@@ -118,8 +118,7 @@ public class MessagesActivity extends BaseActivity {
         });
     }
 
-    private void updateMessages(Messages messages) {
-        //Todo: change the method name as updatemessage
+    private void updateMessage(Messages messages) {
         Intent intent = new Intent(this, EditMessageActivity.class);
         intent.putExtra(Constants.KEY_MESSAGE, messages);
         startActivity(intent);
