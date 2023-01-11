@@ -11,8 +11,7 @@ import com.example.crud.R;
 
 import java.util.List;
 
-public class MessageAdapter extends RecyclerView.Adapter<MessageViewHolder> {
-    //Todo: change the class name as MessagesAdapter
+public class MessagesAdapter extends RecyclerView.Adapter<MessageViewHolder> {
 
     private List<Messages> messagesList;
 
@@ -23,9 +22,8 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageViewHolder> {
         notifyDataSetChanged();
     }
 
-    public void setOnItemActionListener(OnItemActionListener actionListener){
-        //Todo: use default modifier
-        onItemActionListener = actionListener;
+    public void setOnItemActionListener(OnItemActionListener onItemActionListener){
+        this.onItemActionListener = onItemActionListener;
     }
 
     @NonNull
