@@ -1,4 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data>
+        <variable
+            name="template"
+            type="com.example.crud.templates.Templates" />
+    </data>
+
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
@@ -22,5 +29,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:gravity="start|top"
+            android:text="@{template.messageText}"
             android:inputType="textMultiLine" />
     </LinearLayout>
+</layout>

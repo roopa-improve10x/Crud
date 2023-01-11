@@ -29,13 +29,13 @@ public class EditTemplateActivity extends BaseAddEditTemplateActivity{
     }
 
     private void showData() {
-        templateMessageTxt.setText(templates.messageText);
+       binding.setTemplate(templates);
     }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if(item.getItemId() == R.id.add){
-            String messageText = templateMessageTxt.getText().toString();
+            String messageText = binding.templateMessageTxt.getText().toString();
             updateTemplates(templates.id, messageText);
             return true;
         } else {
