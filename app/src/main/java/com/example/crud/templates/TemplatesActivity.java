@@ -24,7 +24,7 @@ import retrofit2.Response;
 
 public class TemplatesActivity extends BaseActivity {
 
-    private ArrayList<Templates> templateList = new ArrayList<>();
+    private ArrayList<Templates> templates = new ArrayList<>();
     private RecyclerView templatesRv;
     private TemplateAdapter templateAdapter;
 
@@ -110,7 +110,7 @@ public class TemplatesActivity extends BaseActivity {
         templatesRv = findViewById(R.id.templates_rv);
         templatesRv.setLayoutManager(new LinearLayoutManager(this));
         templateAdapter = new TemplateAdapter();
-        templateAdapter.setData(templateList);
+        templateAdapter.setData(templates);
         templatesRv.setAdapter(templateAdapter);
         templateAdapter.setOnItemActionListener(new OnItemActionListener() {
             @Override

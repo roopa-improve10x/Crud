@@ -16,7 +16,7 @@ import retrofit2.Response;
 
 public class EditMessageActivity extends BaseAddEditMessageActivity{
 
-    private Messages messages;
+    public Messages messages;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,18 +29,16 @@ public class EditMessageActivity extends BaseAddEditMessageActivity{
     }
 
     private void showData(){
-        nameTxt.setText(messages.name);
-        messageTxt.setText(messages.message);
-        phoneNumberTxt.setText(messages.mobileNo);
+        binding.setMessage(messages);
     }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == R.id.add){
             // Todo: change the add as save
-            String name = nameTxt.getText().toString();
-            String number = phoneNumberTxt.getText().toString();
-            String message = messageTxt.getText().toString();
+            String name = binding.addNameTxt.getText().toString();
+            String number = binding.phoneNumberTxt.getText().toString();
+            String message = binding.addMessageTxt.getText().toString();
             updateMessage(messages.id, name, number, message);
             return true;
         } else{

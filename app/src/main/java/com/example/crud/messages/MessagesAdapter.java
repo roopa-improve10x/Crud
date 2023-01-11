@@ -8,6 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.crud.R;
+import com.example.crud.databinding.ActivityAddEditMessageBindingImpl;
 import com.example.crud.databinding.MessageLayoutItemBinding;
 
 import java.util.List;
@@ -38,9 +39,7 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessageViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull MessageViewHolder holder, int position) {
         Messages messages = messagesList.get(position);
-        holder.binding.nameTxt.setText(messages.name);
-        holder.binding.mobileNoTxt.setText(messages.mobileNo);
-        holder.binding.messageTxt.setText(messages.message);
+        holder.binding.setMessage(messages);
         holder.binding.cancelImgBtn.setOnClickListener(view -> {
             onItemActionListener.onDelete(messages.id);
         });
