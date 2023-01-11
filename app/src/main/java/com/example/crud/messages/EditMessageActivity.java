@@ -35,7 +35,6 @@ public class EditMessageActivity extends BaseAddEditMessageActivity{
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == R.id.add){
-            // Todo: change the add as save
             String name = binding.addNameTxt.getText().toString();
             String number = binding.phoneNumberTxt.getText().toString();
             String message = binding.addMessageTxt.getText().toString();
