@@ -8,6 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.crud.R;
+import com.example.crud.databinding.MessageLayoutItemBinding;
 
 import java.util.List;
 
@@ -29,21 +30,21 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessageViewHolder> {
     @NonNull
     @Override
     public MessageViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.message_layout_item, parent, false);
-        MessageViewHolder messageViewHolder = new MessageViewHolder(view);
+        MessageLayoutItemBinding binding = MessageLayoutItemBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false);
+        MessageViewHolder messageViewHolder = new MessageViewHolder(binding);
         return messageViewHolder;
     }
 
     @Override
     public void onBindViewHolder(@NonNull MessageViewHolder holder, int position) {
         Messages messages = messagesList.get(position);
-        holder.nameTxt.setText(messages.name);
-        holder.mobileNoTxt.setText(messages.mobileNo);
-        holder.messageTxt.setText(messages.message);
-        holder.cancelImgBtn.setOnClickListener(view -> {
+        holder.binding.nameTxt.setText(messages.name);
+        holder.binding.mobileNoTxt.setText(messages.mobileNo);
+        holder.binding.messageTxt.setText(messages.message);
+        holder.binding.cancelImgBtn.setOnClickListener(view -> {
             onItemActionListener.onDelete(messages.id);
         });
-        holder.itemView.setOnClickListener(view -> {
+        holder.binding.cancelImgBtn.setOnClickListener(view -> {
             onItemActionListener.onEdit(messages);
         });
     }
