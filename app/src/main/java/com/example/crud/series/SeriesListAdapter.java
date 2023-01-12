@@ -37,7 +37,7 @@ public class SeriesListAdapter extends RecyclerView.Adapter<SeriesViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull SeriesViewHolder holder, int position) {
        Series series = seriesList.get(position);
-       holder.binding.seriesImageTxt.setText(series.title);
+      holder.binding.setSeries(series);
        if(series.imageUrl != null && series.imageUrl.isEmpty() == false) {
            Picasso.get().load(series.imageUrl).into(holder.binding.seriesImgView);
        }

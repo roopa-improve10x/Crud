@@ -29,9 +29,7 @@ public class EditSeriesActivity extends BaseAddEditSeriesActivity{
     }
 
     private void showData(){
-        binding.seriesIdTxt.getText().toString();
-        binding.seriesNameTxt.getText().toString();
-        binding.imageUrlTxt.getText().toString();
+        binding.setSeries(series);
     }
 
     @Override

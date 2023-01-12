@@ -1,45 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:padding="12dp">
+<layout>
+    <data>
+        <variable
+            name="series"
+            type="com.example.crud.series.Series" />
+    </data>
 
-    <LinearLayout
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:orientation="horizontal">
+        android:orientation="vertical"
+        android:padding="12dp">
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical">
+            android:gravity="center"
+            android:orientation="horizontal">
 
-            <ImageView
-                android:id="@+id/series_img_view"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:adjustViewBounds="true"
-                app:srcCompat="@drawable/ic_launcher_background" />
-
-            <TextView
-                android:id="@+id/series_image_txt"
-                android:layout_width="match_parent"
+            <LinearLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:padding="12dp"
-                android:text="TextView"
-                android:textSize="16sp" />
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/series_img_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:adjustViewBounds="true"
+                    imageUrl="@{series.imageUrl}"
+                    app:srcCompat="@drawable/ic_launcher_background" />
+
+                <TextView
+                    android:id="@+id/series_image_txt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="12dp"
+                    android:text="@{series.title}"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+            <ImageButton
+                android:id="@+id/series_cancel_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/ic_baseline_close_24" />
         </LinearLayout>
 
-        <ImageButton
-            android:id="@+id/series_cancel_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:srcCompat="@drawable/ic_baseline_close_24" />
     </LinearLayout>
-
-</LinearLayout>
+</layout>
