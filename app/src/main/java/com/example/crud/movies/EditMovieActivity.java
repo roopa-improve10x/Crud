@@ -32,12 +32,12 @@ public class EditMovieActivity extends BaseAddEditMovieActivity{
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if(item.getItemId() == R.id.done) {
-            String movieId = movieIdTxt.getText().toString();
-            Series series = (Series) seriesItemsSp.getSelectedItem();
+            String movieId = binding.movieIdTxt.getText().toString();
+            Series series = (Series) binding.seriesItemsSp.getSelectedItem();
             String seriesId = series.seriesId;
-            String imageUrl = imageUrlTxt.getText().toString();
-            String movieName = movieNameTxt.getText().toString();
-            String description = movieDescriptionTxt.getText().toString();
+            String imageUrl = binding.imageUrlTxt.getText().toString();
+            String movieName = binding.movieNameTxt.getText().toString();
+            String description = binding.movieDescriptionTxt.getText().toString();
             updateMovie( movie.id, movieId, seriesId, movieName, imageUrl, description);
             return true;
         } else {

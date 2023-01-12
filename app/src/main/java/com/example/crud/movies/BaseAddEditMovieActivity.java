@@ -9,6 +9,7 @@ import com.example.crud.R;
 import com.example.crud.api.CrudApi;
 import com.example.crud.api.CrudService;
 import com.example.crud.base.BaseActivity;
+import com.example.crud.databinding.ActivityAddEditMovieBinding;
 import com.example.crud.series.Series;
 
 import java.util.ArrayList;
@@ -23,18 +24,13 @@ public class BaseAddEditMovieActivity extends BaseActivity {
     protected CrudService crudService;
     protected CustomSeriesAdapter customSeriesAdapter;
     private ArrayList<Series> seriesItems = new ArrayList<>();
-    protected Spinner seriesItemsSp;
     protected Movie movie;
-    protected EditText movieIdTxt;
-    protected EditText movieNameTxt;
-    protected EditText imageUrlTxt;
-    protected EditText movieDescriptionTxt;
-
+   protected ActivityAddEditMovieBinding binding;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_edit_movie);
-        initViews();
+        binding = ActivityAddEditMovieBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
         setupCrudApiService();
         fetchSeriesItems();
         setupSeriesItemsSp();
@@ -42,15 +38,7 @@ public class BaseAddEditMovieActivity extends BaseActivity {
 
     private void setupSeriesItemsSp() {
         customSeriesAdapter = new CustomSeriesAdapter(this, android.R.layout.simple_list_item_1, seriesItems);
-        seriesItemsSp.setAdapter(customSeriesAdapter);
-    }
-
-    protected void initViews() {
-        movieIdTxt = findViewById(R.id.movie_id_txt);
-        movieNameTxt = findViewById(R.id.movie_name_txt);
-        imageUrlTxt = findViewById(R.id.image_url_txt);
-        movieDescriptionTxt = findViewById(R.id.movie_description_txt);
-        seriesItemsSp = findViewById(R.id.series_items_sp);
+        binding.seriesItemsSp.setAdapter(customSeriesAdapter);
     }
 
     private void setupCrudApiService() {
@@ -83,15 +71,12 @@ public class BaseAddEditMovieActivity extends BaseActivity {
         });
     }
 
-    protected void showData() {
-        movieIdTxt.setText(movie.movieId);
-        movieNameTxt.setText(movie.movieName);
-        imageUrlTxt.setText(movie.movieImageUrl);
-        movieDescriptionTxt.setText(movie.description);
+    public void showData() {
+       binding.setMovie(movie);
         for(int i = 0; i < customSeriesAdapter.getCount(); i++) {
             Series series = customSeriesAdapter.getItem(i);
             if(movie.seriesId.equals(series.seriesId)) {
-                seriesItemsSp.setSelection(i);
+                binding.seriesItemsSp.setSelection(i);
             }
         }
     }

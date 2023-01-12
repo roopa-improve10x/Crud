@@ -8,6 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.crud.R;
+import com.example.crud.databinding.MovieItemBinding;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -30,19 +31,19 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieViewHolder> {
     @NonNull
     @Override
     public MovieViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.movie_item, parent, false);
-        MovieViewHolder movieViewHolder = new MovieViewHolder(view);
+        MovieItemBinding binding = MovieItemBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false);
+        MovieViewHolder movieViewHolder = new MovieViewHolder(binding);
         return movieViewHolder;
     }
 
     @Override
     public void onBindViewHolder(@NonNull MovieViewHolder holder, int position) {
         Movie movie = movies.get(position);
-        holder.movieNameTxt.setText(movie.movieName);
+        holder.binding.setMovie(movie);
         if(movie.movieImageUrl != null && movie.movieImageUrl.isEmpty() == false) {
-            Picasso.get().load(movie.movieImageUrl).into(holder.movieImgView);
+            Picasso.get().load(movie.movieImageUrl).into(holder.binding.movieImgView);
         }
-        holder.movieCancelBtn.setOnClickListener(view -> {
+        holder.binding.movieCancelBtn.setOnClickListener(view -> {
             onItemActionListener.onDelete(movie.id);
         });
         holder.itemView.setOnClickListener(view -> {
