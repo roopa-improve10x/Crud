@@ -12,6 +12,7 @@ import com.example.crud.R;
 import com.example.crud.api.CrudApi;
 import com.example.crud.api.CrudService;
 import com.example.crud.base.BaseActivity;
+import com.example.crud.databinding.ActivityAddEditSeriesBinding;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -19,22 +20,13 @@ import retrofit2.Response;
 
 public class BaseAddEditSeriesActivity extends BaseActivity {
 
-    protected EditText seriesIdTxt;
-    protected EditText seriesNameTxt;
-    protected EditText imageUrlTxt;
+    protected ActivityAddEditSeriesBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_edit_series);
-        log("onCreate");
-        inItViews();
-    }
-
-    private void inItViews() {
-        seriesIdTxt = findViewById(R.id.series_id_txt);
-        seriesNameTxt = findViewById(R.id.series_name_txt);
-        imageUrlTxt = findViewById(R.id.image_url_txt);
+        binding = ActivityAddEditSeriesBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
     }
 
     @Override

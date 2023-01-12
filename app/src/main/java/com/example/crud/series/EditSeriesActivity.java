@@ -29,17 +29,17 @@ public class EditSeriesActivity extends BaseAddEditSeriesActivity{
     }
 
     private void showData(){
-        seriesIdTxt.getText().toString();
-        seriesNameTxt.getText().toString();
-        imageUrlTxt.getText().toString();
+        binding.seriesIdTxt.getText().toString();
+        binding.seriesNameTxt.getText().toString();
+        binding.imageUrlTxt.getText().toString();
     }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if(item.getItemId() == R.id.add) {
-            String seriesId = seriesIdTxt.getText().toString();
-            String name = seriesNameTxt.getText().toString();
-            String imageUrl = imageUrlTxt.getText().toString();
+            String seriesId = binding.seriesIdTxt.getText().toString();
+            String name = binding.seriesNameTxt.getText().toString();
+            String imageUrl = binding.imageUrlTxt.getText().toString();
             updateSeries(series.id, seriesId, name, imageUrl);
             return true;
         } else {

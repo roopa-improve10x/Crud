@@ -9,18 +9,15 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.crud.R;
+import com.example.crud.databinding.SeriesLayoutItemBinding;
 import com.squareup.picasso.Picasso;
 
 public class SeriesViewHolder extends RecyclerView.ViewHolder {
 
-    ImageView seriesImgView;
-    TextView seriesImgTxt;
-    ImageButton seriesCancelBtn;
+    SeriesLayoutItemBinding binding;
 
-    public SeriesViewHolder(@NonNull View itemView) {
-        super(itemView);
-        seriesImgTxt = itemView.findViewById(R.id.series_image_txt);
-        seriesImgView = itemView.findViewById(R.id.series_img_view);
-        seriesCancelBtn = itemView.findViewById(R.id.series_cancel_btn);
+    public SeriesViewHolder(SeriesLayoutItemBinding binding) {
+        super(binding.getRoot());
+        this.binding = binding;
     }
 }
